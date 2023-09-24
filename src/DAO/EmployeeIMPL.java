@@ -5,10 +5,7 @@ import DTO.Employee;
 import DTO.Employee;
 import INTERFACES.EmployeeDAO;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,18 +39,59 @@ public class EmployeeIMPL implements EmployeeDAO {
     }
 
     @Override
-    public Employee insert(Employee person) throws SQLException {
+    public Optional<Employee> insert(Employee person) throws SQLException {
+        try (Connection connection = DB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     "BEGIN;" +
+                             "INSERT INTO person (firstName, lastName, dateofbirth, phonenumber) VALUES (?, ?, ?, ?);" +
+                             "INSERT INTO employe (id, registrationNumber, recrutmentDate, email) VALUES ((SELECT id FROM person WHERE firstName = ? AND lastName = ? AND dateofbirth = ?), ?, ?, ? );" +
+                             "COMMIT;")) {
+
+            ps.setString(1, person.getFirstName());
+            ps.setString(2, person.getLastName());
+            ps.setDate(3, Date.valueOf(person.getDateOfBirth()));
+            ps.setString(4, person.getPhoneNumber());
+            ps.setString(5, person.getFirstName());
+            ps.setString(6, person.getLastName());
+            ps.setDate(7, Date.valueOf(person.getDateOfBirth()));
+            ps.setString(8, person.getRegistrationNumber());
+            ps.setDate(9, Date.valueOf(person.getRecruitmentDate()));
+            ps.setString(10, person.getEmail());
+
+            int rs = ps.executeUpdate();
+            return getOne(person.getRegistrationNumber());
+        }
+    }
+
+    @Override
+    public Optional<Employee> update(Employee person) throws SQLException {
         return null;
     }
 
     @Override
-    public Employee update(Employee person) throws SQLException {
-        return null;
-    }
+    public boolean delete(String Rnum) throws SQLException {
+        Connection connection = null;
+        PreparedStatement ps = null;
 
-    @Override
-    public boolean delete(String t) throws SQLException {
-        return false;
+        connection = DB.getConnection();
+
+        String sql = """
+                BEGIN;
+                DELETE FROM person
+                WHERE id = (SELECT id FROM employe WHERE registrationNumber = ?);
+                                
+                DELETE FROM employe
+                WHERE registrationNumber = ?;
+                COMMIT ;
+
+                """;
+
+        ps = connection.prepareStatement(sql);
+        ps.setString(1, Rnum);
+        ps.setString(2, Rnum);
+        int rowsDeleted = ps.executeUpdate();
+        boolean bool = rowsDeleted > 0;
+        return bool;
     }
 
     @Override

@@ -16,12 +16,12 @@ public class ClientIMPL implements ClientDAO {
     }
 
     @Override
-    public Client insert(Client person) throws SQLException {
+    public Optional<Client> insert(Client person) throws SQLException {
         return null;
     }
 
     @Override
-    public Client update(Client person) throws SQLException {
+    public Optional<Client> update(Client person) throws SQLException {
         return null;
     }
 

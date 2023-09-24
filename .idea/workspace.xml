@@ -5,28 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6024ab7b-e587-45ac-8b32-54ebfc235c74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/DAO/ClientIMPL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAO/CurrentAccountIPLM.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAO/EmployeeIMPL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DAO/SavingAccountIMPL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/DTO/Operation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/INTERFACES/ClientDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/INTERFACES/DAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/INTERFACES/EmployeeDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/INTERFACES/operationType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SERVICE/PersonService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/AccountIPLM.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DATABASE/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DATABASE/DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DTO/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DTO/CurrentAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/CurrentAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/ClientIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ClientIMPL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/CurrentAccountIPLM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/CurrentAccountIPLM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/EmployeeIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/EmployeeIMPL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/SavingAccountIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/SavingAccountIMPL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DTO/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/INTERFACES/AccountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/INTERFACES/AccountDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/INTERFACES/CurrentAccountDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/INTERFACES/ClientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/INTERFACES/ClientDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/INTERFACES/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/INTERFACES/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/INTERFACES/EmployeeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/INTERFACES/EmployeeDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SERVICE/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SERVICE/EmployeeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers/DatabaseSQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/DatabaseSQL.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +74,7 @@
     &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -108,6 +102,9 @@
       <workItem from="1695464670687" duration="18447000" />
       <workItem from="1695522676800" duration="437000" />
       <workItem from="1695560755843" duration="293000" />
+      <workItem from="1695561238137" duration="6103000" />
+      <workItem from="1695567742939" duration="7556000" />
+      <workItem from="1695580373890" duration="9846000" />
     </task>
     <servers />
   </component>

@@ -19,6 +19,7 @@ public class Employee extends Person {
         this.registrationNumber = registrationnumber;
     }
 
+
     public int getId() {
         return id;
     }

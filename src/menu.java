@@ -1,24 +1,94 @@
+import DAO.EmployeeIMPL;
 import DTO.Employee;
-import SERVICE.PersonService;
+import SERVICE.EmployeeService;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
 public class menu {
     public static void getOneEmploye() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Registration Employee Number :");
         String num = scanner.nextLine();
-        PersonService personService = new PersonService();
-        Optional<Employee> getOneEmploye = personService.getOneEmployeBy(num);
+        EmployeeService personService = new EmployeeService();
+        Optional<Employee> getOneEmploye = personService.getOneByRegistrationNum(num);
         Employee Employee = getOneEmploye.get();
 
-        System.out.println("\nregistration Number : " + Employee.getRegistrationNumber());
-        System.out.println("\nRecrutment Date : " + Employee.getRecruitmentDate());
-        System.out.println("\nfirst name : " + Employee.getFirstName());
-        System.out.println("\nlast name : " + Employee.getLastName());
-        System.out.println("\nbirthday : " + Employee.getDateOfBirth());
-        System.out.println("\nemail : " + Employee.getEmail());
-        System.out.println("\nphone number : " + Employee.getPhoneNumber());
+        System.out.println("registration Number : " + Employee.getRegistrationNumber());
+        System.out.println("Recrutment Date : " + Employee.getRecruitmentDate());
+        System.out.println("first name : " + Employee.getFirstName());
+        System.out.println("last name : " + Employee.getLastName());
+        System.out.println("Date Of Birth : " + Employee.getDateOfBirth());
+        System.out.println("email : " + Employee.getEmail());
+        System.out.println("phone number : " + Employee.getPhoneNumber());
         System.out.println("---------------------------------------");
+    }
+
+    public static void getAllEmployes() throws SQLException {
+        EmployeeIMPL employedao = new EmployeeIMPL();
+        List<Optional<Employee>> Employes = employedao.getAll();
+        int counter = 1;
+        for (Optional<Employee> employeee : Employes) {
+            System.out.println("Book number " + counter + ":");
+            System.out.println("registration Number : " + employeee.get().getRegistrationNumber());
+            System.out.println("Recrutment Date : " + employeee.get().getRecruitmentDate());
+            System.out.println("first name : " + employeee.get().getFirstName());
+            System.out.println("last name : " + employeee.get().getLastName());
+            System.out.println("Date Of Birth : " + employeee.get().getDateOfBirth());
+            System.out.println("email : " + employeee.get().getEmail());
+            System.out.println("phone number : " + employeee.get().getPhoneNumber());
+            System.out.println("---------------------------------------");
+            counter++;
+        }
+    }
+
+    public static void insertEmploye() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter registration Number :");
+        String registrationNumber = scanner.nextLine();
+        System.out.println("Enter Recrutment Date  :");
+        LocalDate RecrutmentDate = LocalDate.parse(scanner.nextLine());
+        System.out.println("Enter first name  :");
+        String firstname = scanner.nextLine();
+        System.out.println("Enter last name :");
+        String lastname = scanner.nextLine();
+        System.out.println("Enter Date Of Birth :");
+        LocalDate DateOfBirth = LocalDate.parse(scanner.nextLine());
+        System.out.println("Enter email :");
+        String email = scanner.nextLine();
+        System.out.println("Enter phone number :");
+        String phonenumber = scanner.nextLine();
+
+
+        EmployeeService employeeService = new EmployeeService();
+        Employee newEmploye = new Employee(firstname, lastname, DateOfBirth, phonenumber, registrationNumber, RecrutmentDate, email);
+        Optional<Employee> Data = employeeService.insertEmployee(newEmploye);
+        Employee Employee = Data.get();
+
+        System.out.println("\nThe New Employe :");
+        System.out.println("registration Number : " + Employee.getRegistrationNumber());
+        System.out.println("Recrutment Date : " + Employee.getRecruitmentDate());
+        System.out.println("first name : " + Employee.getFirstName());
+        System.out.println("last name : " + Employee.getLastName());
+        System.out.println("Date Of Birth : " + Employee.getDateOfBirth());
+        System.out.println("email : " + Employee.getEmail());
+        System.out.println("phone number : " + Employee.getPhoneNumber());
+        System.out.println("---------------------------------------");
+    }
+
+    public static void deleteEmploye() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter registration number for Employe : ");
+        String Rnum = scanner.nextLine();
+        EmployeeService employeeService = new EmployeeService();
+        Boolean isDeleted = employeeService.deleteEmployee(Rnum);
+        if (isDeleted) {
+            System.out.println("deleted Successfully");
+        } else {
+            System.out.println("delete Failed");
+        }
     }
 }

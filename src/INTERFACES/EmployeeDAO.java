@@ -11,10 +11,10 @@ public interface EmployeeDAO extends DAO<Employee> {
     Optional<Employee> getOne(String num) throws SQLException;
 
     @Override
-    Employee insert(Employee employe) throws SQLException;
+    Optional<Employee> insert(Employee employe) throws SQLException;
 
     @Override
-    Employee update(Employee employe) throws SQLException;
+    Optional<Employee> update(Employee employe) throws SQLException;
 
     @Override
     boolean delete(String t) throws SQLException;

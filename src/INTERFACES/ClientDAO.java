@@ -11,10 +11,10 @@ public interface ClientDAO extends DAO<Client> {
     Optional<Client> getOne(String num) throws SQLException;
 
     @Override
-    Client insert(Client employe) throws SQLException;
+    Optional<Client> insert(Client employe) throws SQLException;
 
     @Override
-    Client update(Client employe) throws SQLException;
+    Optional<Client> update(Client employe) throws SQLException;
 
     @Override
     boolean delete(String t) throws SQLException;

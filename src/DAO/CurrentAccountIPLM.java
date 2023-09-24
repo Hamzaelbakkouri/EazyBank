@@ -15,12 +15,12 @@ public class CurrentAccountIPLM implements AccountDAO {
     }
 
     @Override
-    public Account insert(Account currentAccount) throws SQLException {
+    public Optional<Account> insert(Account currentAccount) throws SQLException {
         return null;
     }
 
     @Override
-    public Account update(Account currentAccount) throws SQLException {
+    public Optional<Account> update(Account currentAccount) throws SQLException {
         return null;
     }
 

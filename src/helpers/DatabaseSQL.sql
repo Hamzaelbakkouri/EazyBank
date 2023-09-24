@@ -8,12 +8,12 @@ create table person (
                         phoneNumber varchar(10)
 );
 CREATE TABLE "client" (
-                          id int references person(id) primary key ,
+                          id int primary key references person(id) ON DELETE CASCADE,
                           code varchar(100) unique ,
                           adress varchar(100)
 );
 create table "employe" (
-                           id int references person(id) primary key,
+                           id int primary key references person(id) ON DELETE CASCADE,
                            registrationNumber varchar(100) unique ,
                            recrutmentDate date,
                            email varchar(100)

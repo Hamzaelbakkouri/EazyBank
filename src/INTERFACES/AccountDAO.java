@@ -12,10 +12,10 @@ public interface AccountDAO extends DAO<Account> {
     Optional<Account> getOne(String AccNum) throws SQLException;
 
     @Override
-    Account insert(Account currentAccount) throws SQLException;
+    Optional<Account> insert(Account currentAccount) throws SQLException;
 
     @Override
-    Account update(Account currentAccount) throws SQLException;
+    Optional<Account> update(Account currentAccount) throws SQLException;
 
     @Override
     boolean delete(String AccNum) throws SQLException;
