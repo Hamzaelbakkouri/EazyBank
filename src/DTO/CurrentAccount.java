@@ -10,11 +10,9 @@ public class CurrentAccount extends Account {
         super(accnum, balance, creationdate, status);
         this.maxPrice = maxprice;
     }
-
-    public void setMaxPrice(double maxPrice) {
+    public void setMaxPrice(double maxPrice)    {
         this.maxPrice = maxPrice;
     }
-
     public double getMaxPrice() {
         return maxPrice;
     }

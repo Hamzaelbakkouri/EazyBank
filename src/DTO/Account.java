@@ -3,12 +3,14 @@ package DTO;
 import INTERFACES.statut;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Account {
     private String AccNum;
     private double Balance;
     private LocalDate creationDate;
     private statut Statut;
+    private List<Operation> operation;
 
     public Account(String accnum, double balance, LocalDate creationdate, statut status) {
         this.AccNum = accnum;

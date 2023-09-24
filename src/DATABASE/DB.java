@@ -5,23 +5,26 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DB {
-    public static void connection() {
-        // Database connection parameters
-        String url = "jdbc:postgresql://localhost:5000/postgres";
-        String username = "postgres";
-        String password = "hamza2018";
+    private static Connection connection;
 
-        try {
-            Class.forName("org.postgresql.Driver");
+    public static Connection getConnection() {
+        if (connection == null) {
+            // Database connection parameters
+            String url = "jdbc:postgresql://localhost:5000/postgres";
+            String username = "postgres";
+            String password = "hamza2018";
 
-            Connection connection = DriverManager.getConnection(url, username, password);
-            connection.close();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            System.err.println("PostgreSQL JDBC driver not found.");
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.err.println("Database connection error.");
+            try {
+                Class.forName("org.postgresql.Driver");
+                connection = DriverManager.getConnection(url, username, password);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                System.err.println("PostgreSQL JDBC driver not found.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                System.err.println("Database connection error.");
+            }
         }
+        return connection;
     }
 }
