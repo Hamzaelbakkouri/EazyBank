@@ -3,10 +3,14 @@ package DTO;
 import java.time.LocalDate;
 
 public class Person {
-    private String firstName;
-    private String lastName;
-    private LocalDate dateOfBirth;
-    private String phoneNumber;
+    protected String firstName;
+    protected String lastName;
+    protected LocalDate dateOfBirth;
+    protected String phoneNumber;
+
+    public Person(){
+
+    }
 
     public Person(String firstname, String lastname, LocalDate dateOfbirth, String phonenumber) {
         this.firstName = firstname;

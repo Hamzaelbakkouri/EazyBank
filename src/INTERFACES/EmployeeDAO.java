@@ -21,4 +21,6 @@ public interface EmployeeDAO extends DAO<Employee> {
 
     @Override
     List<Optional<Employee>> getAll() throws SQLException;
+
+    List<Optional<Employee>> searchByAllAttributs(String attribut) throws SQLException;
 }

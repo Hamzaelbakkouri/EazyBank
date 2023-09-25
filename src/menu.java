@@ -45,6 +45,27 @@ public class menu {
         }
     }
 
+    public static void searchByAllAttributs() throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        EmployeeIMPL employedao = new EmployeeIMPL();
+        System.out.println("Enter any Attribute :");
+        String Attribute = scanner.nextLine();
+        List<Optional<Employee>> Employes = employedao.searchByAllAttributs(Attribute);
+        int counter = 1;
+        for (Optional<Employee> employeee : Employes) {
+            System.out.println("Book number " + counter + ":");
+            System.out.println("registration Number : " + employeee.get().getRegistrationNumber());
+            System.out.println("Recrutment Date : " + employeee.get().getRecruitmentDate());
+            System.out.println("first name : " + employeee.get().getFirstName());
+            System.out.println("last name : " + employeee.get().getLastName());
+            System.out.println("Date Of Birth : " + employeee.get().getDateOfBirth());
+            System.out.println("email : " + employeee.get().getEmail());
+            System.out.println("phone number : " + employeee.get().getPhoneNumber());
+            System.out.println("---------------------------------------");
+            counter++;
+        }
+    }
+
     public static void insertEmploye() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter registration Number :");
