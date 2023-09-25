@@ -45,6 +45,19 @@ public class EmployeeService {
         return Employe;
     }
 
+    public Optional<Employee> updateEmployee(Employee employes) {
+//        check if Registration Number is exist
+        Optional<Employee> Employe = Optional.empty();
+        try {
+            EmployeeIMPL employedao = new EmployeeIMPL();
+            Employe = employedao.update(employes);
+            Employe = Optional.of(Employe.get());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Employe;
+    }
+
     public Boolean deleteEmployee(String Rnum) {
         Boolean Employe = null;
         try {

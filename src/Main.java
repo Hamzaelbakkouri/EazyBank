@@ -10,6 +10,7 @@ public class Main {
         System.out.println("2 : ______________ get one Employee __________________  ");
         System.out.println("3 : ______________ get all Employees _________________  ");
         System.out.println("4 : ______________ Delete Employee _________________  ");
+        System.out.println("5 : ______________ Update Employee _________________  ");
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
         switch (choice) {
@@ -39,6 +40,14 @@ public class Main {
                 }
             case "4":
                 menu.deleteEmploye();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "5":
+                menu.updateEmployee();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
                     PricipalMenu();

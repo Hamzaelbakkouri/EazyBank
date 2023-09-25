@@ -79,6 +79,40 @@ public class menu {
         System.out.println("---------------------------------------");
     }
 
+    public static void updateEmployee() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter registration Number to Update Employee:");
+        String registrationNumber = scanner.nextLine();
+        System.out.println("Update Recrutment Date  :");
+        LocalDate RecrutmentDate = LocalDate.parse(scanner.nextLine());
+        System.out.println("Update first name  :");
+        String firstname = scanner.nextLine();
+        System.out.println("Update last name :");
+        String lastname = scanner.nextLine();
+        System.out.println("Update Date Of Birth :");
+        LocalDate DateOfBirth = LocalDate.parse(scanner.nextLine());
+        System.out.println("Update email :");
+        String email = scanner.nextLine();
+        System.out.println("Update phone number :");
+        String phonenumber = scanner.nextLine();
+
+
+        EmployeeService employeeService = new EmployeeService();
+        Employee newEmploye = new Employee(firstname, lastname, DateOfBirth, phonenumber, registrationNumber, RecrutmentDate, email);
+        Optional<Employee> Data = employeeService.updateEmployee(newEmploye);
+        Employee Employee = Data.get();
+
+        System.out.println("\nThe New Employe :");
+        System.out.println("registration Number : " + Employee.getRegistrationNumber());
+        System.out.println("Recrutment Date : " + Employee.getRecruitmentDate());
+        System.out.println("first name : " + Employee.getFirstName());
+        System.out.println("last name : " + Employee.getLastName());
+        System.out.println("Date Of Birth : " + Employee.getDateOfBirth());
+        System.out.println("email : " + Employee.getEmail());
+        System.out.println("phone number : " + Employee.getPhoneNumber());
+        System.out.println("---------------------------------------");
+    }
+
     public static void deleteEmploye() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter registration number for Employe : ");
