@@ -18,10 +18,10 @@ public class EmployeeIMPL implements EmployeeDAO {
     public Optional<Employee> getOne(String Rnum) throws SQLException {
         Optional<Employee> employee = Optional.empty();
 
-        String sql = "SELECT * FROM person AS pr INNER JOIN employe as em ON em.id = pr.id WHERE em.registrationnumber = ?";
+        String sql = "SELECT * FROM person AS pr INNER JOIN employe as em ON em.id = pr.id WHERE em.registrationnumber like ?";
 
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, Rnum);
+        ps.setString(1, "%" + Rnum + "%");
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             String firstname = rs.getString("firstname");
@@ -135,4 +135,31 @@ public class EmployeeIMPL implements EmployeeDAO {
         ps.close();
         return Employes;
     }
+
+    @Override
+    public List<Optional<Employee>> searchByAllAttributs(String attribut) throws SQLException {
+        List<Optional<Employee>> Employes = new ArrayList<>();
+        String sql = "SELECT * FROM employe as em INNER JOIN person as pr ON pr.id = em.id WHERE firstName LIKE ? OR lastName LIKE ? ";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, "%" + attribut + "%");
+        ps.setString(2, "%" + attribut + "%");
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            String firstname = rs.getString("firstname");
+            String lastname = rs.getString("lastname");
+            LocalDate dateOfBirth = rs.getDate("dateofbirth").toLocalDate();
+            String phoneNumber = rs.getString("phonenumber");
+            String registrationNumber = rs.getString("registrationnumber");
+            LocalDate recruitmentDate = rs.getDate("recrutmentdate").toLocalDate();
+            String email = rs.getString("email");
+
+            Employee employee = new Employee(firstname, lastname, dateOfBirth, phoneNumber, registrationNumber, recruitmentDate, email);
+            Employes.add(Optional.of(employee));
+        }
+        rs.close();
+        ps.close();
+        return Employes;
+    }
+
 }

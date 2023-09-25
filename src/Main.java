@@ -7,10 +7,11 @@ public class Main {
 
         System.out.println("************ WELCOME TO OUR EazyBank ******************** ");
         System.out.println("1 : ______________ Add Employee ____________________  ");
-        System.out.println("2 : ______________ get one Employee __________________  ");
-        System.out.println("3 : ______________ get all Employees _________________  ");
+        System.out.println("2 : ______________ get one Employee ________________  ");
+        System.out.println("3 : ______________ get all Employees _______________  ");
         System.out.println("4 : ______________ Delete Employee _________________  ");
         System.out.println("5 : ______________ Update Employee _________________  ");
+        System.out.println("6 : _________ Search with all Attributes ___________  ");
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
         switch (choice) {
@@ -48,6 +49,14 @@ public class Main {
                 }
             case "5":
                 menu.updateEmployee();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+                case "6":
+                menu.searchByAllAttributs();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
                     PricipalMenu();

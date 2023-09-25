@@ -5,6 +5,7 @@ import DTO.Employee;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +20,18 @@ public class EmployeeService {
             e.printStackTrace();
         }
         return Employe;
+    }
+
+    public List<Optional<Employee>> searchByAllAttributs(String param) {
+        List<Optional<Employee>> Employes = new ArrayList<>();
+        try {
+            EmployeeIMPL employedao = new EmployeeIMPL();
+            List<Optional<Employee>> employee = employedao.searchByAllAttributs(param);
+            Employes = employee;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Employes;
     }
 
     public List<Optional<Employee>> getAll() {
