@@ -12,9 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class EmployeeIMPL implements EmployeeDAO {
+    Connection connection = DB.getConnection();
+
     @Override
     public Optional<Employee> getOne(String Rnum) throws SQLException {
-        Connection connection = DB.getConnection();
         Optional<Employee> employee = Optional.empty();
 
         String sql = "SELECT * FROM person AS pr INNER JOIN employe as em ON em.id = pr.id WHERE em.registrationnumber = ?";
@@ -40,12 +41,13 @@ public class EmployeeIMPL implements EmployeeDAO {
 
     @Override
     public Optional<Employee> insert(Employee person) throws SQLException {
-        try (Connection connection = DB.getConnection();
-             PreparedStatement ps = connection.prepareStatement(
-                     "BEGIN;" +
-                             "INSERT INTO person (firstName, lastName, dateofbirth, phonenumber) VALUES (?, ?, ?, ?);" +
-                             "INSERT INTO employe (id, registrationNumber, recrutmentDate, email) VALUES ((SELECT id FROM person WHERE firstName = ? AND lastName = ? AND dateofbirth = ?), ?, ?, ? );" +
-                             "COMMIT;")) {
+        Optional<Employee> returnInsert = Optional.ofNullable(person);
+        try (
+                PreparedStatement ps = connection.prepareStatement(
+                        "BEGIN;" +
+                                "INSERT INTO person (firstName, lastName, dateofbirth, phonenumber) VALUES (?, ?, ?, ?);" +
+                                "INSERT INTO employe (id, registrationNumber, recrutmentDate, email) VALUES ((SELECT id FROM person WHERE firstName = ? AND lastName = ? AND dateofbirth = ?), ?, ?, ? );" +
+                                "COMMIT;")) {
 
             ps.setString(1, person.getFirstName());
             ps.setString(2, person.getLastName());
@@ -59,21 +61,37 @@ public class EmployeeIMPL implements EmployeeDAO {
             ps.setString(10, person.getEmail());
 
             int rs = ps.executeUpdate();
-            return getOne(person.getRegistrationNumber());
+            return returnInsert;
         }
     }
 
     @Override
     public Optional<Employee> update(Employee person) throws SQLException {
-        return null;
+        Optional<Employee> returnInsert = Optional.ofNullable(person);
+        try (
+                PreparedStatement ps = connection.prepareStatement(
+                        "BEGIN;" +
+                                "UPDATE person SET firstName = ?, lastName = ?, dateofbirth = ?, phonenumber = ? WHERE id = (SELECT id FROM employe WHERE registrationNumber = ?);" +
+                                "UPDATE employe SET recrutmentDate = ?, email = ? WHERE registrationNumber = ?;" +
+                                "COMMIT;")) {
+
+            ps.setString(1, person.getFirstName());
+            ps.setString(2, person.getLastName());
+            ps.setDate(3, Date.valueOf(person.getDateOfBirth()));
+            ps.setString(4, person.getPhoneNumber());
+            ps.setString(5, person.getRegistrationNumber());
+            ps.setDate(6, Date.valueOf(person.getRecruitmentDate()));
+            ps.setString(7, person.getEmail());
+            ps.setString(8, person.getRegistrationNumber());
+
+            int rs = ps.executeUpdate();
+            return returnInsert;
+        }
     }
 
     @Override
     public boolean delete(String Rnum) throws SQLException {
-        Connection connection = null;
         PreparedStatement ps = null;
-
-        connection = DB.getConnection();
 
         String sql = """
                 BEGIN;
@@ -96,7 +114,6 @@ public class EmployeeIMPL implements EmployeeDAO {
 
     @Override
     public List<Optional<Employee>> getAll() throws SQLException {
-        Connection connection = DB.getConnection();
         List<Optional<Employee>> Employes = new ArrayList<>();
         String sql = "SELECT * FROM employe as em INNER JOIN person as pr ON pr.id = em.id";
         PreparedStatement ps = connection.prepareStatement(sql);
