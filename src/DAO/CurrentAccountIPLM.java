@@ -1,27 +1,34 @@
 package DAO;
 
+import DATABASE.DB;
 import DTO.Account;
-import INTERFACES.AccountDAO;
+import DTO.CurrentAccount;
+import DTO.Employee;
+import INTERFACES.CurrentAccountDAO;
 
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class CurrentAccountIPLM implements AccountDAO {
+public class CurrentAccountIPLM implements CurrentAccountDAO {
+    Connection connection = DB.getConnection();
 
     @Override
-    public Optional<Account> getOne(String AccNum) throws SQLException {
+    public Optional<CurrentAccount> getOne(String AccNum) throws SQLException {
         return Optional.empty();
     }
 
     @Override
-    public Optional<Account> insert(Account currentAccount) throws SQLException {
-        return null;
+    public Optional<CurrentAccount> insert(CurrentAccount currentCurrentAccount) throws SQLException {
+        return Optional.empty();
     }
 
     @Override
-    public Optional<Account> update(Account currentAccount) throws SQLException {
-        return null;
+    public Optional<CurrentAccount> update(CurrentAccount currentCurrentAccount) throws SQLException {
+        return Optional.empty();
     }
 
     @Override
@@ -30,17 +37,17 @@ public class CurrentAccountIPLM implements AccountDAO {
     }
 
     @Override
-    public List<Account> showByCreationDate() throws SQLException {
+    public List<CurrentAccount> showByCreationDate() throws SQLException {
         return null;
     }
 
     @Override
-    public List<Account> showByStatus() throws SQLException {
+    public List<CurrentAccount> showByStatus() throws SQLException {
         return null;
     }
 
     @Override
-    public List<Optional<Account>> getAll() throws SQLException {
+    public List<Optional<CurrentAccount>> getAll() throws SQLException {
         return null;
     }
 
@@ -50,7 +57,7 @@ public class CurrentAccountIPLM implements AccountDAO {
     }
 
     @Override
-    public Account SearchByClient() throws SQLException {
+    public CurrentAccount SearchByClient() throws SQLException {
         return null;
     }
 }

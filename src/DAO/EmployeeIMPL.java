@@ -139,10 +139,11 @@ public class EmployeeIMPL implements EmployeeDAO {
     @Override
     public List<Optional<Employee>> searchByAllAttributs(String attribut) throws SQLException {
         List<Optional<Employee>> Employes = new ArrayList<>();
-        String sql = "SELECT * FROM employe as em INNER JOIN person as pr ON pr.id = em.id WHERE firstName LIKE ? OR lastName LIKE ? ";
+        String sql = "SELECT * FROM employe as em INNER JOIN person as pr ON pr.id = em.id WHERE firstName LIKE ? OR lastName LIKE ? OR phonenumber LIKE ?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, "%" + attribut + "%");
         ps.setString(2, "%" + attribut + "%");
+        ps.setString(3, "%" + attribut + "%");
 
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
