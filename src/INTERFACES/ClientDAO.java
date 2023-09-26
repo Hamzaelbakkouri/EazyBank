@@ -1,6 +1,7 @@
 package INTERFACES;
 
 import DTO.Client;
+import DTO.Employee;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -21,4 +22,6 @@ public interface ClientDAO extends DAO<Client> {
 
     @Override
     List<Optional<Client>> getAll() throws SQLException;
+
+    List<Optional<Client>> searchByAllAttributs(String attribut) throws SQLException;
 }
