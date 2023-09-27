@@ -1,5 +1,5 @@
 create database EasyBank;
-drop table "person" ;
+
 create table person (
                         id serial primary key ,
                         firstName varchar(50),
@@ -19,18 +19,18 @@ create table "employe" (
                            email varchar(100)
 );
 create type "status" as enum ('active','inactive');
-create table "account" (
+create table account (
                            accountNumber varchar(100) primary key ,
                            balance double precision ,
                            creationDate date,
                            client_code varchar(100) references client(code),
                            status status
 );
-create table "currentAccount" (
+create table currentAccount (
                                   id varchar(100) references account(accountNumber) primary key ,
                                   maxPrice double precision
 );
-create table "SavingAccount" (
+create table SavingAccount (
                                  interestRate double precision,
                                  id varchar(100) references account(accountNumber) primary key
 );

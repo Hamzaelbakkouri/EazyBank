@@ -1,26 +1,28 @@
 package DAO;
 
 import DTO.Account;
-import INTERFACES.AccountDAO;
+import DTO.SavingAccount;
+import INTERFACES.SavingAccountDAO;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-public class SavingAccountIMPL implements AccountDAO {
+public class SavingAccountIMPL implements SavingAccountDAO {
+
     @Override
-    public Optional<Account> getOne(String AccNum) throws SQLException {
+    public Optional<SavingAccount> getOne(String AccNum) throws SQLException {
         return Optional.empty();
     }
 
     @Override
-    public Optional<Account> insert(Account currentAccount) throws SQLException {
-        return null;
+    public Optional<SavingAccount> insert(SavingAccount currentSavingAccount) throws SQLException {
+        return Optional.empty();
     }
 
     @Override
-    public Optional<Account> update(Account currentAccount) throws SQLException {
-        return null;
+    public Optional<SavingAccount> update(SavingAccount currentSavingAccount) throws SQLException {
+        return Optional.empty();
     }
 
     @Override
@@ -29,17 +31,17 @@ public class SavingAccountIMPL implements AccountDAO {
     }
 
     @Override
-    public List<Account> showByCreationDate() throws SQLException {
+    public List<Optional<SavingAccount>> getAll() throws SQLException {
         return null;
     }
 
     @Override
-    public List<Account> showByStatus() throws SQLException {
+    public List<SavingAccount> showByCreationDate() throws SQLException {
         return null;
     }
 
     @Override
-    public List<Optional<Account>> getAll() throws SQLException {
+    public List<SavingAccount> showByStatus() throws SQLException {
         return null;
     }
 
@@ -49,7 +51,7 @@ public class SavingAccountIMPL implements AccountDAO {
     }
 
     @Override
-    public Account SearchByClient() throws SQLException {
+    public SavingAccount SearchByClient() throws SQLException {
         return null;
     }
 }
