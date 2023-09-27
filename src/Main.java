@@ -18,6 +18,8 @@ public class Main {
         System.out.println("10 : ______________ Delete Client __________________  ");
         System.out.println("11 : ______________ Update Client __________________  ");
         System.out.println("12 : _____ Search Client with all Attributes _______  ");
+        System.out.println("13 : _____________ create account __________________  ");
+        System.out.println("14 : ____________ search an account __________________  ");
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
         switch (choice) {
@@ -111,6 +113,22 @@ public class Main {
                 }
             case "12":
                 menu.searchByAttributsClients();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "13":
+                menu.chooseAccountType();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+                case "14":
+                menu.SearchAccountType();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
                     PricipalMenu();

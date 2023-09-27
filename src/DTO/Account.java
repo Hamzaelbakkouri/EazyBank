@@ -6,18 +6,38 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Account {
-    private String AccNum;
-    private double Balance;
-    private LocalDate creationDate;
-    private statut Statut;
-    private List<Operation> operation;
+    protected String AccNum;
+    protected double Balance;
+    protected LocalDate creationDate;
+    protected statut Statut;
+    protected List<Operation> operation;
+    protected Client Client;
 
-    public Account(String accnum, double balance, LocalDate creationdate, statut status) {
+
+    public Account(String accnum, double balance, LocalDate creationdate, statut status, Client client) {
         this.AccNum = accnum;
         this.Balance = balance;
         this.creationDate = creationdate;
         this.Statut = status;
+        this.Client = client;
     }
+
+    public List<Operation> getOperation() {
+        return operation;
+    }
+
+    public void setOperation(List<Operation> operation) {
+        this.operation = operation;
+    }
+
+    public Client getClient() {
+        return Client;
+    }
+
+    public void setClient(Client client) {
+        Client = client;
+    }
+
 
     public String getAccNum() {
         return AccNum;
