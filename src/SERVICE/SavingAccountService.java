@@ -1,7 +1,10 @@
 package SERVICE;
 
+import DAO.CurrentAccountIPLM;
 import DAO.SavingAccountIMPL;
+import DTO.CurrentAccount;
 import DTO.SavingAccount;
+import INTERFACES.CurrentAccountDAO;
 import INTERFACES.SavingAccountDAO;
 
 import java.util.Optional;
@@ -29,5 +32,17 @@ public class SavingAccountService {
             System.out.println(e + " :Not Found");
         }
         return SavingAccount;
+    }
+
+    public Optional<SavingAccount> updateSavingAccount(SavingAccount savingaccount) {
+        Optional<SavingAccount> savAccount = Optional.empty();
+        try {
+            SavingAccountDAO Savingaccount = new SavingAccountIMPL();
+            savAccount = Savingaccount.update(savingaccount);
+            savAccount = Optional.of(savAccount.get());
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return savAccount;
     }
 }

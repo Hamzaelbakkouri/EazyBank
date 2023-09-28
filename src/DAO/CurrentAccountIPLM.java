@@ -8,9 +8,9 @@ import INTERFACES.CurrentAccountDAO;
 import INTERFACES.statut;
 
 import java.sql.*;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class CurrentAccountIPLM implements CurrentAccountDAO {
     Connection connection = DB.getConnection();
@@ -88,17 +88,15 @@ public class CurrentAccountIPLM implements CurrentAccountDAO {
         Optional<CurrentAccount> returnInsert = Optional.ofNullable(currentCurrentAccount);
         PreparedStatement ps = connection.prepareStatement(
                 "BEGIN;"
-                        + "UPDATE account SET accountNumber = ?, balance = ?, creationdate = ?, client_code = ?,status = ? WHERE accountNumber = ? "
-                        + "UPDATE currentaccount id, maxprice " +
+                        + "UPDATE account SET balance = ?, status = ?::status WHERE accountNumber = ? ;"
+                        + "UPDATE currentAccount SET maxprice = ? WHERE id = ?;" +
                         "COMMIT;");
 
-        ps.setString(1, currentCurrentAccount.getAccNum());
-        ps.setDouble(2, currentCurrentAccount.getBalance());
-        ps.setDate(3, Date.valueOf((LocalDate) currentCurrentAccount.getCreationDate()));
-        ps.setString(4, currentCurrentAccount.getClient().getCode());
-        ps.setString(5, currentCurrentAccount.getStatut().toString());
-        ps.setString(6, currentCurrentAccount.getAccNum());
-        ps.setDouble(7, currentCurrentAccount.getMaxPrice());
+        ps.setDouble(1, currentCurrentAccount.getBalance());
+        ps.setString(2, currentCurrentAccount.getStatut().toString());
+        ps.setString(3, currentCurrentAccount.getAccNum());
+        ps.setDouble(4, currentCurrentAccount.getMaxPrice());
+        ps.setString(5, currentCurrentAccount.getAccNum());
 
         int rs = ps.executeUpdate();
         return returnInsert;
@@ -110,27 +108,78 @@ public class CurrentAccountIPLM implements CurrentAccountDAO {
     }
 
     @Override
-    public List<CurrentAccount> showByCreationDate() throws SQLException {
+    public Map<String, Optional<CurrentAccount>> getAll() throws SQLException {
+        Map<String, Optional<CurrentAccount>> currentAccounts = new HashMap<>();
+        String sql = "SELECT * FROM account AS a INNER JOIN currentAccount as ca ON ca.id = a.accountNumber INNER JOIN client as cl ON a.client_code = cl.code Inner Join person as p ON cl.id = p.id ";
+
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            double balance = rs.getDouble("balance");
+            String accnum = rs.getString("accountNumber");
+            LocalDate creationdate = rs.getDate("creationdate").toLocalDate();
+            Client client = new Client(
+                    rs.getString("firstname"),
+                    rs.getString("lastname"),
+                    rs.getDate("dateofbirth").toLocalDate(),
+                    rs.getString("phonenumber"),
+                    rs.getString("code"),
+                    rs.getString("adress"));
+            String status = rs.getString("status");
+            statut statues = statut.valueOf(status);
+            double maxprice = rs.getDouble("maxprice");
+
+            String sql2 = "SELECT * FROM account AS a INNER JOIN employe as emp ON a.employee_code = emp.registrationnumber Inner Join person ON emp.id = person.id WHERE a.accountNumber = ?  ";
+            ps = connection.prepareStatement(sql2);
+            ps.setString(1, rs.getString("accountNumber"));
+            ResultSet rs2 = ps.executeQuery();
+            Employee employee = null;
+            if (rs2.next()) {
+                employee = new Employee(
+                        rs2.getString("firstname"),
+                        rs2.getString("lastname"),
+                        rs2.getDate("dateofbirth").toLocalDate(),
+                        rs2.getString("phonenumber"),
+                        rs2.getString("registrationnumber"),
+                        rs2.getDate("recrutmentdate").toLocalDate(),
+                        rs2.getString("email")
+                );
+            }
+            rs2.close();
+
+            currentAccounts.put(accnum, Optional.of(new CurrentAccount(accnum, balance, creationdate, statues, client, maxprice, employee)));
+        }
+        rs.close();
+        ps.close();
+        return currentAccounts;
+    }
+
+
+    @Override
+    public List<Optional<CurrentAccount>> showByCreationDate(LocalDate date) throws SQLException {
         return null;
     }
 
     @Override
-    public List<CurrentAccount> showByStatus() throws SQLException {
+    public List<Optional<CurrentAccount>> showByStatus(statut stats) throws SQLException {
         return null;
     }
 
     @Override
-    public List<Optional<CurrentAccount>> getAll() throws SQLException {
-        return null;
+    public Boolean changeStatut(String accnum, statut stats) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("UPDATE account SET status = ?::status WHERE accountNumber = ? ");
+
+        ps.setString(1, stats.toString());
+        ps.setString(2, accnum);
+
+        int rs = ps.executeUpdate();
+        return rs > 0;
     }
 
     @Override
-    public Boolean changeStatut() throws SQLException {
+    public List<Optional<CurrentAccount>> SearchByClient(String client) throws SQLException {
         return null;
     }
 
-    @Override
-    public CurrentAccount SearchByClient() throws SQLException {
-        return null;
-    }
+
 }

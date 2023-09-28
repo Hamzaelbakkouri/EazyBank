@@ -3,7 +3,9 @@ package INTERFACES;
 import DTO.CurrentAccount;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface CurrentAccountDAO extends DAO<CurrentAccount> {
@@ -20,15 +22,15 @@ public interface CurrentAccountDAO extends DAO<CurrentAccount> {
     boolean delete(String AccNum) throws SQLException;
 
     @Override
-    List<Optional<CurrentAccount>> getAll() throws SQLException;
+    Map<String, Optional<CurrentAccount>> getAll() throws SQLException;
 
-    List<CurrentAccount> showByCreationDate() throws SQLException;
+    List<Optional<CurrentAccount>> showByCreationDate(LocalDate date) throws SQLException;
 
-    List<CurrentAccount> showByStatus() throws SQLException;
+    List<Optional<CurrentAccount>> showByStatus(statut stats) throws SQLException;
 
 
-    Boolean changeStatut() throws SQLException;
+    Boolean changeStatut(String accnum, statut stats) throws SQLException;
 
-    CurrentAccount SearchByClient() throws SQLException;
+    List<Optional<CurrentAccount>> SearchByClient(String client) throws SQLException;
 
 }

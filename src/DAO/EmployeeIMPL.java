@@ -6,10 +6,9 @@ import DTO.Employee;
 import INTERFACES.EmployeeDAO;
 
 import java.sql.*;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class EmployeeIMPL implements EmployeeDAO {
     Connection connection = DB.getConnection();
@@ -113,8 +112,8 @@ public class EmployeeIMPL implements EmployeeDAO {
     }
 
     @Override
-    public List<Optional<Employee>> getAll() throws SQLException {
-        List<Optional<Employee>> Employes = new ArrayList<>();
+    public Map<String, Optional<Employee>> getAll() throws SQLException {
+        Map<String, Optional<Employee>> Employes = new HashMap<>();
         String sql = "SELECT * FROM employe as em INNER JOIN person as pr ON pr.id = em.id";
         PreparedStatement ps = connection.prepareStatement(sql);
 
@@ -129,7 +128,7 @@ public class EmployeeIMPL implements EmployeeDAO {
             String email = rs.getString("email");
 
             Employee employee = new Employee(firstname, lastname, dateOfBirth, phoneNumber, registrationNumber, recruitmentDate, email);
-            Employes.add(Optional.of(employee));
+            Employes.put(registrationNumber, Optional.of(employee));
         }
         rs.close();
         ps.close();

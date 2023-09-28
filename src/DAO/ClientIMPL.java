@@ -7,10 +7,9 @@ import INTERFACES.ClientDAO;
 import INTERFACES.EmployeeDAO;
 
 import java.sql.*;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ClientIMPL implements ClientDAO {
     Connection connection = DB.getConnection();
@@ -110,8 +109,8 @@ public class ClientIMPL implements ClientDAO {
     }
 
     @Override
-    public List<Optional<Client>> getAll() throws SQLException {
-        List<Optional<Client>> Clients = new ArrayList<>();
+    public Map<String, Optional<Client>> getAll() throws SQLException {
+        Map<String, Optional<Client>> Clients = new HashMap<>();
         String sql = "SELECT * FROM client as em INNER JOIN person as pr ON pr.id = em.id";
         PreparedStatement ps = connection.prepareStatement(sql);
 
@@ -125,7 +124,7 @@ public class ClientIMPL implements ClientDAO {
             String adress = rs.getString("adress");
 
             Client employee = new Client(firstname, lastname, dateOfBirth, phoneNumber, code, adress);
-            Clients.add(Optional.of(employee));
+            Clients.put(code, Optional.of(employee));
         }
         rs.close();
         ps.close();

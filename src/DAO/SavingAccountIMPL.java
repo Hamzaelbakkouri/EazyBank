@@ -8,6 +8,7 @@ import INTERFACES.statut;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class SavingAccountIMPL implements SavingAccountDAO {
@@ -92,12 +93,12 @@ public class SavingAccountIMPL implements SavingAccountDAO {
     }
 
     @Override
-    public List<Optional<SavingAccount>> getAll() throws SQLException {
+    public Map<String, Optional<SavingAccount>> getAll() throws SQLException {
         return null;
     }
 
     @Override
-    public List<SavingAccount> showByCreationDate() throws SQLException {
+    public List<SavingAccount> showByCreationDate(LocalDate date) throws SQLException {
         return null;
     }
 
@@ -107,12 +108,18 @@ public class SavingAccountIMPL implements SavingAccountDAO {
     }
 
     @Override
-    public Boolean changeStatut() throws SQLException {
-        return null;
+    public Boolean changeStatut(String accnum, statut stats) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("UPDATE account SET status = ?::status WHERE accountNumber = ? ");
+
+        ps.setString(1, stats.toString());
+        ps.setString(2, accnum);
+
+        int rs = ps.executeUpdate();
+        return rs > 0;
     }
 
     @Override
-    public SavingAccount SearchByClient() throws SQLException {
+    public List<Optional<SavingAccount>> SearchByClient(String clintCode) throws SQLException {
         return null;
     }
 }
