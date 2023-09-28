@@ -753,4 +753,74 @@ public class menu {
             System.out.println("wrong choice !!");
         }
     }
+
+
+    public static void getByCreationDateCurrent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter creation Date :");
+        LocalDate date = LocalDate.parse(scanner.nextLine());
+        CurentAccountService currentAccAll = new CurentAccountService();
+        Map<String, Optional<CurrentAccount>> currentAccounts = currentAccAll.getByCreationDate(date);
+
+        for (Map.Entry<String, Optional<CurrentAccount>> entry : currentAccounts.entrySet()) {
+            String accountNumber = entry.getKey();
+            Optional<CurrentAccount> currentAccountOptional = entry.getValue();
+
+            if (currentAccountOptional.isPresent()) {
+                CurrentAccount currentAccount = currentAccountOptional.get();
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println("Client Code : " + currentAccount.getClient().getCode());
+                System.out.println("max price : " + currentAccount.getMaxPrice());
+                System.out.println("Balance : " + currentAccount.getBalance());
+                System.out.println("Statut : " + currentAccount.getStatut());
+                System.out.println("Creation Date : " + currentAccount.getCreationDate());
+                System.out.println("--------------------------------------------");
+
+            } else {
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println(" Current Accounts not found.");
+            }
+        }
+    }
+
+    public static void getByCreationDateSaving() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter creation Date :");
+        LocalDate date = LocalDate.parse(scanner.nextLine());
+        SavingAccountService currentAccAll = new SavingAccountService();
+        Map<String, Optional<SavingAccount>> SavingAccountAccounts = currentAccAll.getByCreationDate(date);
+
+        for (Map.Entry<String, Optional<SavingAccount>> entry : SavingAccountAccounts.entrySet()) {
+            String accountNumber = entry.getKey();
+            Optional<SavingAccount> savingAccountOptional = entry.getValue();
+
+            if (savingAccountOptional.isPresent()) {
+                SavingAccount Savingaccount = savingAccountOptional.get();
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println("Client Code : " + Savingaccount.getClient().getCode());
+                System.out.println("Interest Rate : " + Savingaccount.getInterestRate());
+                System.out.println("Balance : " + Savingaccount.getBalance());
+                System.out.println("Statut : " + Savingaccount.getStatut());
+                System.out.println("Creation Date : " + Savingaccount.getCreationDate());
+                System.out.println("--------------------------------------------");
+
+            } else {
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println(" Current Accounts not found.");
+            }
+        }
+    }
+
+    public static void getByCreationDateAccountType() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("1 : to get Current accounts \n2 : to get Saving accounts");
+        int choice = Integer.parseInt(scanner.nextLine());
+        if (choice == 1) {
+            getByCreationDateCurrent();
+        } else if (choice == 2) {
+            getByCreationDateSaving();
+        } else {
+            System.out.println("wrong choice !!");
+        }
+    }
 }

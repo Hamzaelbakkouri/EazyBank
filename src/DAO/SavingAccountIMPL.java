@@ -142,7 +142,50 @@ public class SavingAccountIMPL implements SavingAccountDAO {
 
     @Override
     public Map<String, Optional<SavingAccount>> showByCreationDate(LocalDate date) throws SQLException {
-        return null;
+        Map<String, Optional<SavingAccount>> currentAccounts = new HashMap<>();
+        String sql = "SELECT * FROM account AS a INNER JOIN savingAccount as ca ON ca.id = a.accountNumber INNER JOIN client as cl ON a.client_code = cl.code Inner Join person as p ON cl.id = p.id WHERE a.creationdate = ?";
+
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setDate(1, Date.valueOf((LocalDate) date));
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            double balance = rs.getDouble("balance");
+            String accnum = rs.getString("accountNumber");
+            LocalDate creationdate = rs.getDate("creationdate").toLocalDate();
+            Client client = new Client(
+                    rs.getString("firstname"),
+                    rs.getString("lastname"),
+                    rs.getDate("dateofbirth").toLocalDate(),
+                    rs.getString("phonenumber"),
+                    rs.getString("code"),
+                    rs.getString("adress"));
+            String status = rs.getString("status");
+            statut statues = statut.valueOf(status);
+            double interestrate = rs.getDouble("interestrate");
+
+            String sql2 = "SELECT * FROM account AS a INNER JOIN employe as emp ON a.employee_code = emp.registrationnumber Inner Join person ON emp.id = person.id WHERE a.accountNumber = ?  ";
+            ps = connection.prepareStatement(sql2);
+            ps.setString(1, rs.getString("accountNumber"));
+            ResultSet rs2 = ps.executeQuery();
+            Employee employee = null;
+            if (rs2.next()) {
+                employee = new Employee(
+                        rs2.getString("firstname"),
+                        rs2.getString("lastname"),
+                        rs2.getDate("dateofbirth").toLocalDate(),
+                        rs2.getString("phonenumber"),
+                        rs2.getString("registrationnumber"),
+                        rs2.getDate("recrutmentdate").toLocalDate(),
+                        rs2.getString("email")
+                );
+            }
+            rs2.close();
+
+            currentAccounts.put(accnum, Optional.of(new SavingAccount(accnum, balance, creationdate, statues, interestrate, client, employee)));
+        }
+        rs.close();
+        ps.close();
+        return currentAccounts;
     }
 
     @Override
