@@ -1,13 +1,14 @@
 package SERVICE;
 
+import DAO.ClientIMPL;
 import DAO.EmployeeIMPL;
+import DTO.Client;
 import DTO.Employee;
+import INTERFACES.ClientDAO;
+import INTERFACES.EmployeeDAO;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class EmployeeService {
     public Optional<Employee> getOneByRegistrationNum(String param) {
@@ -34,16 +35,15 @@ public class EmployeeService {
         return Employes;
     }
 
-    public List<Optional<Employee>> getAll() {
-        List<Optional<Employee>> Employe = new ArrayList<>();
+    public Map<String, Optional<Employee>> getAll() {
+        Map<String, Optional<Employee>> client = new HashMap<>();
         try {
-            EmployeeIMPL employedao = new EmployeeIMPL();
-            List<Optional<Employee>> employee = employedao.getAll();
-            Employe = employee;
+            EmployeeDAO employedao = new EmployeeIMPL();
+            client = employedao.getAll();
         } catch (Exception e) {
             System.out.println(e + " :Not Found");
         }
-        return Employe;
+        return client;
     }
 
     public Optional<Employee> insertEmployee(Employee employes) {

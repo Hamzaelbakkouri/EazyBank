@@ -8,9 +8,7 @@ import DTO.Employee;
 import INTERFACES.ClientDAO;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ClientService {
     public Optional<Client> getOneByCode(String param) {
@@ -37,12 +35,11 @@ public class ClientService {
         return clients;
     }
 
-    public List<Optional<Client>> getAll() {
-        List<Optional<Client>> client = new ArrayList<>();
+    public Map<String, Optional<Client>> getAll() {
+        Map<String, Optional<Client>> client = new HashMap<>();
         try {
             ClientDAO clientdao = new ClientIMPL();
-            List<Optional<Client>> employee = clientdao.getAll();
-            client = employee;
+            client = clientdao.getAll();
         } catch (Exception e) {
             System.out.println(e + " :Not Found");
         }

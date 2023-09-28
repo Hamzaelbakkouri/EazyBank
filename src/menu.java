@@ -34,19 +34,28 @@ public class menu {
 
     public static void getAllEmployes() throws SQLException {
         EmployeeIMPL employedao = new EmployeeIMPL();
-        List<Optional<Employee>> Employes = employedao.getAll();
-        int counter = 1;
-        for (Optional<Employee> employeee : Employes) {
-            System.out.println("Book number " + counter + ":");
-            System.out.println("registration Number : " + employeee.get().getRegistrationNumber());
-            System.out.println("Recrutment Date : " + employeee.get().getRecruitmentDate());
-            System.out.println("first name : " + employeee.get().getFirstName());
-            System.out.println("last name : " + employeee.get().getLastName());
-            System.out.println("Date Of Birth : " + employeee.get().getDateOfBirth());
-            System.out.println("email : " + employeee.get().getEmail());
-            System.out.println("phone number : " + employeee.get().getPhoneNumber());
-            System.out.println("---------------------------------------");
-            counter++;
+        Map<String, Optional<Employee>> Employes = employedao.getAll();
+
+        for (Map.Entry<String, Optional<Employee>> entry : Employes.entrySet()) {
+            String accountNumber = entry.getKey();
+            Optional<Employee> currentAccountOptional = entry.getValue();
+
+            if (currentAccountOptional.isPresent()) {
+                Employee currentAccount = currentAccountOptional.get();
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println("registration Number : " + currentAccount.getRegistrationNumber());
+                System.out.println("Recrutment Date : " + currentAccount.getRecruitmentDate());
+                System.out.println("first name : " + currentAccount.getFirstName());
+                System.out.println("last name : " + currentAccount.getLastName());
+                System.out.println("Date Of Birth : " + currentAccount.getDateOfBirth());
+                System.out.println("email : " + currentAccount.getEmail());
+                System.out.println("phone number : " + currentAccount.getPhoneNumber());
+                System.out.println("---------------------------------------");
+
+            } else {
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println(" Current Accounts not found.");
+            }
         }
     }
 
@@ -175,18 +184,27 @@ public class menu {
 
     public static void getAllClients() throws SQLException {
         ClientService employedao = new ClientService();
-        List<Optional<Client>> Employes = employedao.getAll();
-        int counter = 1;
-        for (Optional<Client> employeee : Employes) {
-            System.out.println("Book number " + counter + ":");
-            System.out.println("Code : " + employeee.get().getCode());
-            System.out.println("first name : " + employeee.get().getFirstName());
-            System.out.println("last name : " + employeee.get().getLastName());
-            System.out.println("Date Of Birth : " + employeee.get().getDateOfBirth());
-            System.out.println("Adress : " + employeee.get().getAdress());
-            System.out.println("phone number : " + employeee.get().getPhoneNumber());
-            System.out.println("---------------------------------------");
-            counter++;
+        Map<String, Optional<Client>> Clients = employedao.getAll();
+
+        for (Map.Entry<String, Optional<Client>> entry : Clients.entrySet()) {
+            String accountNumber = entry.getKey();
+            Optional<Client> currentAccountOptional = entry.getValue();
+
+            if (currentAccountOptional.isPresent()) {
+                Client currentAccount = currentAccountOptional.get();
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println("Code : " + currentAccount.getCode());
+                System.out.println("first name : " + currentAccount.getFirstName());
+                System.out.println("last name : " + currentAccount.getLastName());
+                System.out.println("Date Of Birth : " + currentAccount.getDateOfBirth());
+                System.out.println("adress : " + currentAccount.getAdress());
+                System.out.println("phone number : " + currentAccount.getPhoneNumber());
+                System.out.println("---------------------------------------");
+
+            } else {
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println(" Current Accounts not found.");
+            }
         }
     }
 
@@ -463,6 +481,186 @@ public class menu {
             searchForCurrentAccount();
         } else if (choice == 2) {
             searchForSavingAccount();
+        } else {
+            System.out.println("wrong choice !!");
+        }
+
+    }
+
+    public static void updtaeCurrentAccount() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter account Number To Update Current account :");
+        String accountNumber = scanner.nextLine();
+
+        System.out.println("Enter Balance :");
+        double balance = Double.parseDouble(scanner.nextLine());
+        System.out.println("Enter Statut :\n 1 :active Account \n 2 :inactive Account");
+        int statutchoose = Integer.parseInt(scanner.nextLine());
+        statut stats = null;
+        if (statutchoose == 1) {
+            stats = statut.active;
+        } else if (statutchoose == 2) {
+            stats = statut.inactive;
+        } else {
+            stats = statut.active;
+        }
+        System.out.println("Enter maxprice :");
+        double maxprice = Double.parseDouble(scanner.nextLine());
+
+
+        CurentAccountService curentaccountService = new CurentAccountService();
+        CurrentAccount newCurrentAccount = new CurrentAccount(accountNumber, balance, null, stats, null, maxprice, null);
+        Optional<CurrentAccount> Data = curentaccountService.updateCurrentAccount(newCurrentAccount);
+        if (Data.isPresent()) {
+            CurrentAccount Currentaccount = Data.get();
+
+            System.out.println("\nAccount updated :");
+            System.out.println("Account Number : " + Currentaccount.getAccNum());
+            System.out.println("Balance : " + Currentaccount.getBalance() + " DH");
+            System.out.println("Statut : " + Currentaccount.getStatut());
+            System.out.println("max price : " + Currentaccount.getMaxPrice());
+            System.out.println("---------------------------------------");
+        } else {
+            System.out.println("Current account not found");
+        }
+    }
+
+    public static void updtaeSavingAccount() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter account Number To Update Current account :");
+        String accountNumber = scanner.nextLine();
+
+        System.out.println("Enter Balance :");
+        double balance = Double.parseDouble(scanner.nextLine());
+        System.out.println("Enter Statut :\n 1 :active Account \n 2 : inactive Account");
+        int statutchoose = Integer.parseInt(scanner.nextLine());
+        statut stats = null;
+        if (statutchoose == 1) {
+            stats = statut.active;
+        } else if (statutchoose == 2) {
+            stats = statut.inactive;
+        } else {
+            stats = statut.active;
+        }
+        System.out.println("Enter maxprice :");
+        double maxprice = Double.parseDouble(scanner.nextLine());
+        System.out.println("Enter interestrate :");
+        double interestrate = Double.parseDouble(scanner.nextLine());
+
+
+        SavingAccountService savingaccountService = new SavingAccountService();
+        SavingAccount newSavingAccount = new SavingAccount(accountNumber, balance, null, stats, interestrate, null, null);
+        Optional<SavingAccount> Data = savingaccountService.updateSavingAccount(newSavingAccount);
+        if (Data.isPresent()) {
+            SavingAccount Currentaccount = Data.get();
+
+            System.out.println("\nAccount changes :");
+            System.out.println("Account Number : " + Currentaccount.getAccNum());
+            System.out.println("Balance : " + Currentaccount.getBalance());
+            System.out.println("Statut : " + Currentaccount.getStatut());
+            System.out.println("max price : " + Currentaccount.getInterestRate());
+            System.out.println("---------------------------------------");
+        } else {
+            System.out.println("Current account not found");
+        }
+    }
+
+    public static void changeStatut() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Account name :");
+        String accnum = scanner.nextLine();
+        System.out.println("Enter Statut :\n 1 : active Account \n 2 : inactive Account");
+        int Stats = Integer.parseInt(scanner.nextLine());
+        statut changestat = null;
+        if (Stats == 1) {
+            changestat = statut.active;
+        } else if (Stats == 2) {
+            changestat = statut.inactive;
+        } else {
+            System.out.println("statut not found");
+        }
+
+        CurentAccountService curentaccountService = new CurentAccountService();
+        Boolean Data = curentaccountService.changeStatut(accnum, changestat);
+        if (Data) {
+            System.out.println("statut chnged successfully");
+        } else {
+            System.out.println("something went wrong");
+        }
+    }
+
+    public static void updtaeAccountType() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("1 : to update a Current account \n2 : to update a Saving account \n3 : to update an account statut");
+        int choice = Integer.parseInt(scanner.nextLine());
+        if (choice == 1) {
+            updtaeCurrentAccount();
+        } else if (choice == 2) {
+            updtaeSavingAccount();
+        } else if (choice == 3) {
+            changeStatut();
+        } else {
+            System.out.println("wrong choice !!");
+        }
+    }
+
+    public static void getAllCurrent() {
+        CurentAccountService currentAccAll = new CurentAccountService();
+        Map<String, Optional<CurrentAccount>> currentAccounts = currentAccAll.getAllAcc();
+
+        for (Map.Entry<String, Optional<CurrentAccount>> entry : currentAccounts.entrySet()) {
+            String accountNumber = entry.getKey();
+            Optional<CurrentAccount> currentAccountOptional = entry.getValue();
+
+            if (currentAccountOptional.isPresent()) {
+                CurrentAccount currentAccount = currentAccountOptional.get();
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println("Client Code : " + currentAccount.getClient().getCode());
+                System.out.println("max price : " + currentAccount.getMaxPrice());
+                System.out.println("Balance : " + currentAccount.getBalance());
+                System.out.println("Statut : " + currentAccount.getStatut());
+                System.out.println("Creation Date : " + currentAccount.getCreationDate());
+
+            } else {
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println(" Current Accounts not found.");
+            }
+        }
+    }
+
+    public static void getAllSaving() {
+//        CurentAccountService currentAccAll = new CurentAccountService();
+//        Map<String, Optional<CurrentAccount>> currentAccounts = currentAccAll.getAllAcc();
+//
+//        for (Map.Entry<String, Optional<CurrentAccount>> entry : currentAccounts.entrySet()) {
+//            String accountNumber = entry.getKey();
+//            Optional<CurrentAccount> currentAccountOptional = entry.getValue();
+//
+//            if (currentAccountOptional.isPresent()) {
+//                CurrentAccount Savingaccount = currentAccountOptional.get();
+//                System.out.println("Account Number: " + accountNumber);
+//                System.out.println("Account Number : " + Savingaccount.getAccNum());
+//                System.out.println("Client Code : " + Savingaccount.getClient().getCode());
+//                System.out.println("Interest Rate : " + Savingaccount.getInterestRate());
+//                System.out.println("Balance : " + Savingaccount.getBalance());
+//                System.out.println("Statut : " + Savingaccount.getStatut());
+//                System.out.println("Creation Date : " + Savingaccount.getCreationDate());
+//
+//            } else {
+//                System.out.println("Account Number: " + accountNumber);
+//                System.out.println(" Current Accounts not found.");
+//            }
+//        }
+    }
+
+    public static void getAllAccountType() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("1 : to get all Current accounts \n2 : to get all Saving accounts");
+        int choice = Integer.parseInt(scanner.nextLine());
+        if (choice == 1) {
+            getAllCurrent();
+        } else if (choice == 2) {
+            getAllSaving();
         } else {
             System.out.println("wrong choice !!");
         }

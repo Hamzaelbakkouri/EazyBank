@@ -4,6 +4,7 @@ import DTO.Employee;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface EmployeeDAO extends DAO<Employee> {
@@ -20,7 +21,7 @@ public interface EmployeeDAO extends DAO<Employee> {
     boolean delete(String t) throws SQLException;
 
     @Override
-    List<Optional<Employee>> getAll() throws SQLException;
+    Map<String, Optional<Employee>> getAll() throws SQLException;
 
     List<Optional<Employee>> searchByAllAttributs(String attribut) throws SQLException;
 }

@@ -4,7 +4,9 @@ import DTO.CurrentAccount;
 import DTO.SavingAccount;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface SavingAccountDAO extends DAO<SavingAccount> {
@@ -21,14 +23,13 @@ public interface SavingAccountDAO extends DAO<SavingAccount> {
     boolean delete(String AccNum) throws SQLException;
 
     @Override
-    List<Optional<SavingAccount>> getAll() throws SQLException;
+    Map<String, Optional<SavingAccount>> getAll() throws SQLException;
 
-    List<SavingAccount> showByCreationDate() throws SQLException;
+    List<SavingAccount> showByCreationDate(LocalDate date) throws SQLException;
 
     List<SavingAccount> showByStatus() throws SQLException;
 
+    Boolean changeStatut(String accnum, statut stats) throws SQLException;
 
-    Boolean changeStatut() throws SQLException;
-
-    SavingAccount SearchByClient() throws SQLException;
+    List<Optional<SavingAccount>> SearchByClient(String clintCode) throws SQLException;
 }

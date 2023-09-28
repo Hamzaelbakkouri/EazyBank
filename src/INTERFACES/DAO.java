@@ -1,8 +1,9 @@
 package INTERFACES;
 
 
+
 import java.sql.SQLException;
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface DAO<T> {
@@ -14,7 +15,7 @@ public interface DAO<T> {
 
     boolean delete(String t) throws SQLException;
 
-    List<Optional<T>> getAll() throws SQLException;
+    Map<String, Optional<T>> getAll() throws SQLException;
 
 }
 
