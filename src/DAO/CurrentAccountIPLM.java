@@ -3,6 +3,7 @@ package DAO;
 import DATABASE.DB;
 import DTO.Client;
 import DTO.CurrentAccount;
+import DTO.Employee;
 import INTERFACES.CurrentAccountDAO;
 import INTERFACES.statut;
 
@@ -18,10 +19,10 @@ public class CurrentAccountIPLM implements CurrentAccountDAO {
     public Optional<CurrentAccount> getOne(String clientCode) throws SQLException {
         Optional<CurrentAccount> currentAccount = Optional.empty();
         statut statues;
-        String sql = "SELECT * FROM account AS a INNER JOIN currentAccount as ca ON ca.id = a.accountNumber INNER JOIN client as cl ON a.client_code = cl.code Inner Join person as p ON cl.id = p.id WHERE cl.code like ?";
+        String sql = "SELECT * FROM account AS a INNER JOIN currentAccount as ca ON ca.id = a.accountNumber INNER JOIN client as cl ON a.client_code = cl.code Inner Join person as p ON cl.id = p.id WHERE cl.code = ?  ";
 
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, "%" + clientCode + "%");
+        ps.setString(1, clientCode);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             double balance = rs.getDouble("balance");
@@ -38,7 +39,22 @@ public class CurrentAccountIPLM implements CurrentAccountDAO {
             statues = statut.valueOf(status);
             double maxprice = rs.getDouble("maxprice");
 
-            currentAccount = Optional.of(new CurrentAccount(accnum, balance, creationdate, statues, client, maxprice));
+            String sql2 = "SELECT * FROM account AS a INNER JOIN employe as emp ON a.employee_code = emp.registrationnumber Inner Join person ON emp.id = person.id WHERE a.accountNumber = ?  ";
+            ps = connection.prepareStatement(sql2);
+            ps.setString(1, rs.getString("accountNumber"));
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Employee employye = new Employee(
+                        rs.getString("firstname"),
+                        rs.getString("lastname"),
+                        rs.getDate("dateofbirth").toLocalDate(),
+                        rs.getString("phonenumber"),
+                        rs.getString("registrationnumber"),
+                        rs.getDate("recrutmentdate").toLocalDate(),
+                        rs.getString("email")
+                );
+                currentAccount = Optional.of(new CurrentAccount(accnum, balance, creationdate, statues, client, maxprice, employye));
+            }
         }
         rs.close();
         ps.close();
@@ -48,7 +64,33 @@ public class CurrentAccountIPLM implements CurrentAccountDAO {
     @Override
     public Optional<CurrentAccount> insert(CurrentAccount currentCurrentAccount) throws SQLException {
         Optional<CurrentAccount> returnInsert = Optional.ofNullable(currentCurrentAccount);
-        PreparedStatement ps = connection.prepareStatement("BEGIN;" + "INSERT INTO account (accountNumber, balance, creationdate, client_code,status) VALUES (?, ?, ?, ?,?::status);" + "INSERT INTO currentAccount (id, maxprice) VALUES (?, ?);" + "COMMIT;");
+        PreparedStatement ps = connection.prepareStatement(
+                "BEGIN;" +
+                        "INSERT INTO account (accountNumber, balance, creationdate, client_code,employee_code,status) VALUES (?, ?, ?, ?, ?, ?::status);" +
+                        "INSERT INTO currentAccount (id, maxprice) VALUES (?, ?);" +
+                        "COMMIT;");
+
+        ps.setString(1, currentCurrentAccount.getAccNum());
+        ps.setDouble(2, currentCurrentAccount.getBalance());
+        ps.setDate(3, Date.valueOf((LocalDate) currentCurrentAccount.getCreationDate()));
+        ps.setString(4, currentCurrentAccount.getClient().getCode());
+        ps.setString(5, currentCurrentAccount.getEmployye().getRegistrationNumber());
+        ps.setString(6, currentCurrentAccount.getStatut().toString());
+        ps.setString(7, currentCurrentAccount.getAccNum());
+        ps.setDouble(8, currentCurrentAccount.getMaxPrice());
+
+        int rs = ps.executeUpdate();
+        return returnInsert;
+    }
+
+    @Override
+    public Optional<CurrentAccount> update(CurrentAccount currentCurrentAccount) throws SQLException {
+        Optional<CurrentAccount> returnInsert = Optional.ofNullable(currentCurrentAccount);
+        PreparedStatement ps = connection.prepareStatement(
+                "BEGIN;"
+                        + "UPDATE account SET accountNumber = ?, balance = ?, creationdate = ?, client_code = ?,status = ? WHERE accountNumber = ? "
+                        + "UPDATE currentaccount id, maxprice " +
+                        "COMMIT;");
 
         ps.setString(1, currentCurrentAccount.getAccNum());
         ps.setDouble(2, currentCurrentAccount.getBalance());
@@ -60,11 +102,6 @@ public class CurrentAccountIPLM implements CurrentAccountDAO {
 
         int rs = ps.executeUpdate();
         return returnInsert;
-    }
-
-    @Override
-    public Optional<CurrentAccount> update(CurrentAccount currentCurrentAccount) throws SQLException {
-        return Optional.empty();
     }
 
     @Override

@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6024ab7b-e587-45ac-8b32-54ebfc235c74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SERVICE/CurentAccountService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SERVICE/SavingAccountService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAO/CurrentAccountIPLM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/CurrentAccountIPLM.java" afterDir="false" />
@@ -16,7 +15,9 @@
       <change beforePath="$PROJECT_DIR$/src/DTO/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DTO/CurrentAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/CurrentAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DTO/SavingAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/SavingAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SERVICE/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SERVICE/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SERVICE/CurentAccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SERVICE/CurentAccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SERVICE/EmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SERVICE/EmployeeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers/DatabaseSQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/DatabaseSQL.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu.java" afterDir="false" />
     </list>
@@ -62,30 +63,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "EAZ-15-administrer-les-comptes",
-    "last_opened_file_path": "D:/projects/EazyBank",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;EAZ-15-administrer-les-comptes&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/projects/EazyBank&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\projects\EazyBank\src\helpers" />
@@ -110,7 +111,9 @@
       <workItem from="1695580373890" duration="9846000" />
       <workItem from="1695714823141" duration="18029000" />
       <workItem from="1695761339491" duration="7551000" />
-      <workItem from="1695802065393" duration="9123000" />
+      <workItem from="1695802065393" duration="16165000" />
+      <workItem from="1695851595090" duration="1954000" />
+      <workItem from="1695897316139" duration="5888000" />
     </task>
     <servers />
   </component>

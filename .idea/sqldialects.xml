@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/src/DAO/ClientIMPL.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/DAO/CurrentAccountIPLM.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/DAO/EmployeeIMPL.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/DAO/SavingAccountIMPL.java" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/helpers/DatabaseSQL.sql" dialect="PostgreSQL" />
   </component>
 </project>

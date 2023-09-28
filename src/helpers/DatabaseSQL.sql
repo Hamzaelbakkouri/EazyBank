@@ -1,5 +1,5 @@
 create database EasyBank;
-
+drop table account;
 create table person (
                         id serial primary key ,
                         firstName varchar(50),
@@ -24,6 +24,7 @@ create table account (
                            balance double precision ,
                            creationDate date,
                            client_code varchar(100) references client(code),
+                           employee_code varchar(100) references employe(registrationNumber),
                            status status
 );
 create table currentAccount (

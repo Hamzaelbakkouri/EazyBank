@@ -19,8 +19,8 @@ public class ClientService {
             ClientDAO clientdao = new ClientIMPL();
             Optional<Client> employee = clientdao.getOne(param);
             client = Optional.of(employee.get());
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
         }
         return client;
     }
@@ -31,8 +31,8 @@ public class ClientService {
             ClientDAO clientdao = new ClientIMPL();
             List<Optional<Client>> employee = clientdao.searchByAllAttributs(param);
             clients = employee;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
         }
         return clients;
     }
@@ -43,8 +43,8 @@ public class ClientService {
             ClientDAO clientdao = new ClientIMPL();
             List<Optional<Client>> employee = clientdao.getAll();
             client = employee;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
         }
         return client;
     }
@@ -55,8 +55,8 @@ public class ClientService {
             ClientDAO clientdao = new ClientIMPL();
             client = clientdao.insert(employes);
             client = Optional.of(client.get());
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
         }
         return client;
     }
@@ -68,8 +68,8 @@ public class ClientService {
             ClientDAO clientdao = new ClientIMPL();
             client = clientdao.update(employes);
             client = Optional.of(client.get());
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
         }
         return client;
     }
@@ -80,7 +80,7 @@ public class ClientService {
             ClientDAO clientdao = new ClientIMPL();
             client = clientdao.delete(Rnum);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e + " :Not Found");
         }
         return client;
     }
