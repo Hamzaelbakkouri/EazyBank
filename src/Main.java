@@ -23,6 +23,7 @@ public class Main {
         System.out.println("15 : _____________ updtae account __________________  ");
         System.out.println("16 : ____________ get All accounts _________________  ");
         System.out.println("17 : ______________ get By Status __________________  ");
+        System.out.println("18 : __________ get By Creation Date _______________  ");
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
         switch (choice) {
@@ -156,6 +157,14 @@ public class Main {
                 }
             case "17":
                 menu.getByStatutAccountType();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "18":
+                menu.getByCreationDateAccountType();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
                     PricipalMenu();

@@ -5,6 +5,7 @@ import DTO.CurrentAccount;
 import INTERFACES.CurrentAccountDAO;
 import INTERFACES.statut;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -73,6 +74,16 @@ public class CurentAccountService {
         try {
             CurrentAccountDAO CurrentAccoundao = new CurrentAccountIPLM();
             CurrentAccount = CurrentAccoundao.showByStatus(stats);
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return CurrentAccount;
+    }
+    public Map<String, Optional<CurrentAccount>> getByCreationDate(LocalDate date) {
+        Map<String, Optional<CurrentAccount>> CurrentAccount = new HashMap<>();
+        try {
+            CurrentAccountDAO CurrentAccoundao = new CurrentAccountIPLM();
+            CurrentAccount = CurrentAccoundao.showByCreationDate(date);
         } catch (Exception e) {
             System.out.println(e + " :Not Found");
         }

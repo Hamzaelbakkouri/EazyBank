@@ -8,6 +8,7 @@ import INTERFACES.CurrentAccountDAO;
 import INTERFACES.SavingAccountDAO;
 import INTERFACES.statut;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -65,6 +66,16 @@ public class SavingAccountService {
         try {
             SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();
             CurrentAccount = SavingAccountdao.showByStatus(stats);
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return CurrentAccount;
+    }
+    public Map<String, Optional<SavingAccount>> getByCreationDate(LocalDate date) {
+        Map<String, Optional<SavingAccount>> CurrentAccount = new HashMap<>();
+        try {
+            SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();
+            CurrentAccount = SavingAccountdao.showByCreationDate(date);
         } catch (Exception e) {
             System.out.println(e + " :Not Found");
         }
