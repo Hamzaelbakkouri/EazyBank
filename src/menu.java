@@ -2,10 +2,12 @@ import DAO.EmployeeIMPL;
 import DTO.Client;
 import DTO.CurrentAccount;
 import DTO.Employee;
+import DTO.SavingAccount;
 import INTERFACES.statut;
 import SERVICE.ClientService;
 import SERVICE.CurentAccountService;
 import SERVICE.EmployeeService;
+import SERVICE.SavingAccountService;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -287,69 +289,94 @@ public class menu {
 
     public static void insertCurrentAcc() {
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Employee registration num To Create Saving account :");
+        String employee = scanner.nextLine();
+        EmployeeService EmployeService = new EmployeeService();
+        Optional<Employee> getoneEmployee = EmployeService.getOneByRegistrationNum(employee);
+
         System.out.println("Enter Client Code To Create Current account :");
         String clientCode = scanner.nextLine();
 
         ClientService personService = new ClientService();
         Optional<Client> getOneEmploye = personService.getOneByCode(clientCode);
-        Client client = getOneEmploye.get();
+        if (getOneEmploye.isPresent()) {
 
-        System.out.println("Enter accnum :");
-        String accnum = scanner.nextLine();
-        System.out.println("Enter Balance :");
-        double balance = Double.parseDouble(scanner.nextLine());
-        LocalDate creationdate = LocalDate.now();
-        System.out.println("Enter maxprice :");
-        double maxprice = Double.parseDouble(scanner.nextLine());
+            Client client = getOneEmploye.get();
+            Employee employe = getoneEmployee.get();
+            System.out.println("Enter accnum :");
+            String accnum = scanner.nextLine();
+            System.out.println("Enter Balance :");
+            double balance = Double.parseDouble(scanner.nextLine());
+            LocalDate creationdate = LocalDate.now();
+            System.out.println("Enter maxprice :");
+            double maxprice = Double.parseDouble(scanner.nextLine());
 
 
-        CurentAccountService curentaccountService = new CurentAccountService();
-        CurrentAccount newCurrentAccount = new CurrentAccount(accnum, balance, creationdate, statut.active, client, maxprice);
-        Optional<CurrentAccount> Data = curentaccountService.insertCurrentAcc(newCurrentAccount);
-        CurrentAccount Currentaccount = Data.get();
+            CurentAccountService curentaccountService = new CurentAccountService();
+            CurrentAccount newCurrentAccount = new CurrentAccount(accnum, balance, creationdate, statut.active, client, maxprice, employe);
+            Optional<CurrentAccount> Data = curentaccountService.insertCurrentAcc(newCurrentAccount);
+            if (Data.isPresent()) {
+                CurrentAccount Currentaccount = Data.get();
 
-        System.out.println("\nThe New Account :");
-        System.out.println("Account Number : " + Currentaccount.getAccNum());
-        System.out.println("Client Code : " + Currentaccount.getClient().getCode());
-        System.out.println("max price : " + Currentaccount.getMaxPrice());
-        System.out.println("Balance : " + Currentaccount.getBalance());
-        System.out.println("Statut : " + Currentaccount.getStatut());
-        System.out.println("Creation Date : " + Currentaccount.getCreationDate());
-        System.out.println("---------------------------------------");
+                System.out.println("\nThe New Account :");
+                System.out.println("Account Number : " + Currentaccount.getAccNum());
+                System.out.println("Client Code : " + Currentaccount.getClient().getCode());
+                System.out.println("max price : " + Currentaccount.getMaxPrice());
+                System.out.println("Balance : " + Currentaccount.getBalance());
+                System.out.println("Statut : " + Currentaccount.getStatut());
+                System.out.println("Creation Date : " + Currentaccount.getCreationDate());
+                System.out.println("---------------------------------------");
+            } else {
+                System.out.println("Current account not found");
+            }
+        } else {
+            System.out.println("Client not found");
+        }
     }
 
     public static void insertSavingAcc() {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Enter Client Code To Create Current account :");
-//        String clientCode = scanner.nextLine();
-//
-//        ClientService personService = new ClientService();
-//        Optional<Client> getOneEmploye = personService.getOneByCode(clientCode);
-//        Client client = getOneEmploye.get();
-//
-//        System.out.println("Enter accnum :");
-//        String accnum = scanner.nextLine();
-//        System.out.println("Enter Balance :");
-//        double balance = Double.parseDouble(scanner.nextLine());
-//        System.out.println("Enter creation date :");
-//        LocalDate creationdate = LocalDate.parse(scanner.nextLine());
-//        System.out.println("Enter phone number :");
-//        double maxprice = Double.parseDouble(scanner.nextLine());
-//
-//
-//        CurentAccountService curentaccountService = new CurentAccountService();
-//        CurrentAccount newCurrentAccount = new CurrentAccount(accnum, balance, creationdate, statut.active, client, maxprice);
-//        Optional<CurrentAccount> Data = curentaccountService.insertCurrentAcc(newCurrentAccount);
-//        CurrentAccount Currentaccount = Data.get();
-//
-//        System.out.println("\nThe New Account :");
-//        System.out.println("Account Number : " + Currentaccount.getAccNum());
-//        System.out.println("Client Code : " + Currentaccount.getClient().getCode());
-//        System.out.println("max price : " + Currentaccount.getMaxPrice());
-//        System.out.println("Balance : " + Currentaccount.getBalance());
-//        System.out.println("Statut : " + Currentaccount.getStatut());
-//        System.out.println("Creation Date : " + Currentaccount.getCreationDate());
-//        System.out.println("---------------------------------------");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Employee registration num To Create Saving account :");
+        String employee = scanner.nextLine();
+        EmployeeService EmployeService = new EmployeeService();
+        Optional<Employee> getoneEmployee = EmployeService.getOneByRegistrationNum(employee);
+
+        System.out.println("Enter Client Code To Create Saving account :");
+        String clientCode = scanner.nextLine();
+        ClientService personService = new ClientService();
+        Optional<Client> getOneClient = personService.getOneByCode(clientCode);
+        if (getOneClient.isPresent()) {
+            Client client = getOneClient.get();
+            Employee employe = getoneEmployee.get();
+            System.out.println("Enter accnum :");
+            String accnum = scanner.nextLine();
+            System.out.println("Enter Balance :");
+            double balance = Double.parseDouble(scanner.nextLine());
+            LocalDate creationdate = LocalDate.now();
+            System.out.println("Interest Rate :");
+            double interestrate = Double.parseDouble(scanner.nextLine());
+
+
+            SavingAccountService SavingAccountservice = new SavingAccountService();
+            SavingAccount newCurrentAccount = new SavingAccount(accnum, balance, creationdate, statut.active, interestrate, client, employe);
+            Optional<SavingAccount> Data = SavingAccountservice.insertSavingAcc(newCurrentAccount);
+            if (Data.isPresent()) {
+                SavingAccount Savingaccount = Data.get();
+
+                System.out.println("\nThe New Account :");
+                System.out.println("Account Number : " + Savingaccount.getAccNum());
+                System.out.println("Client Code : " + Savingaccount.getClient().getCode());
+                System.out.println("Interest Rate : " + Savingaccount.getInterestRate());
+                System.out.println("Balance : " + Savingaccount.getBalance());
+                System.out.println("Statut : " + Savingaccount.getStatut());
+                System.out.println("Creation Date : " + Savingaccount.getCreationDate());
+                System.out.println("---------------------------------------");
+            } else {
+                System.out.println("Saving account not found");
+            }
+        } else {
+            System.out.println("Client not found");
+        }
     }
 
     public static void chooseAccountType() {
@@ -371,27 +398,61 @@ public class menu {
         String Client_code = scanner.nextLine();
         CurentAccountService CurentAccountservicee = new CurentAccountService();
         Optional<CurrentAccount> CurentAccount = CurentAccountservicee.getOneCurrentAccount(Client_code);
-        CurrentAccount acc = CurentAccount.get();
+        if (CurentAccount.isPresent()) {
+            CurrentAccount acc = CurentAccount.get();
 
-        System.out.println("\nThe Account :");
-        System.out.println("Account Number : " + acc.getAccNum());
-        System.out.println("Client First name : " + acc.getClient().getFirstName());
-        System.out.println("Client Last name : " + acc.getClient().getLastName());
-        System.out.println("Client Code : " + acc.getClient().getCode());
-        System.out.println("max price : " + acc.getMaxPrice() + "DH");
-        System.out.println("Balance : " + acc.getBalance() + "DH");
-        System.out.println("Statut : " + acc.getStatut());
-        System.out.println("Creation Date : " + acc.getCreationDate());
-        System.out.println("---------------------------------------");
+            System.out.println("\nThe Account :");
+            System.out.println("Account Number : " + acc.getAccNum());
+            System.out.println("Client First name : " + acc.getClient().getFirstName());
+            System.out.println("Client Last name : " + acc.getClient().getLastName());
+            System.out.println("max price : " + acc.getMaxPrice() + "DH");
+            System.out.println("Balance : " + acc.getBalance() + "DH");
+            System.out.println("Statut : " + acc.getStatut());
+            System.out.println("Creation Date : " + acc.getCreationDate());
+
+            System.out.println("\u001b[32mClient :\u001b[0m");
+            System.out.println("Client Code : " + acc.getClient().getCode());
+            System.out.println("First name : " + acc.getClient().getFirstName());
+            System.out.println("Last name : " + acc.getClient().getLastName());
+
+            System.out.println("\u001b[32mEmployee :\u001b[0m");
+            System.out.println("registration number : " + acc.getEmployye().getRegistrationNumber());
+            System.out.println("First name : " + acc.getEmployye().getFirstName());
+            System.out.println("Last name : " + acc.getEmployye().getLastName());
+            System.out.println("---------------------------------------");
+        }
     }
 
     public static void searchForSavingAccount() {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Enter Account number to search for an CurrentAccount");
-//        String accnum = scanner.nextLine();
-//        CurentAccountService CurentAccountservicee = new CurentAccountService();
-//        Optional<CurrentAccount> CurentAccount = CurentAccountservicee.getOneCurrentAccount(accnum);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Client Code to search for an Saving Account");
+        String accnum = scanner.nextLine();
+        SavingAccountService SavingaccountService = new SavingAccountService();
+        Optional<SavingAccount> Savingaccount = SavingaccountService.getOneSavingAccount(accnum);
+        if (Savingaccount.isPresent()) {
+            SavingAccount acc = Savingaccount.get();
 
+            System.out.println("\nThe Account :");
+            System.out.println("Account Number : " + acc.getAccNum());
+            System.out.println("Client First name : " + acc.getClient().getFirstName());
+            System.out.println("Client Last name : " + acc.getClient().getLastName());
+            System.out.println("Balance : " + acc.getBalance() + " DH");
+            System.out.println("Interest Rate : " + acc.getInterestRate());
+            System.out.println("Statut : " + acc.getStatut());
+            System.out.println("Creation Date : " + acc.getCreationDate());
+
+            System.out.println("\u001b[32mClient :\u001b[0m");
+            System.out.println("Client Code : " + acc.getClient().getCode());
+            System.out.println("First name : " + acc.getClient().getFirstName());
+            System.out.println("Last name : " + acc.getClient().getLastName());
+
+            System.out.println("\u001b[32mEmployee :\u001b[0m");
+            System.out.println("registration number : " + acc.getEmployye().getRegistrationNumber());
+            System.out.println("First name : " + acc.getEmployye().getFirstName());
+            System.out.println("Last name : " + acc.getEmployye().getLastName());
+            System.out.println("Creation Date : " + acc.getCreationDate());
+            System.out.println("---------------------------------------");
+        }
     }
 
     public static void SearchAccountType() {

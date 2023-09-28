@@ -12,14 +12,24 @@ public class Account {
     protected statut Statut;
     protected List<Operation> operation;
     protected Client Client;
+    protected Employee Employye;
 
 
-    public Account(String accnum, double balance, LocalDate creationdate, statut status, Client client) {
+    public Account(String accnum, double balance, LocalDate creationdate, statut status, Client client, Employee employye) {
         this.AccNum = accnum;
         this.Balance = balance;
         this.creationDate = creationdate;
         this.Statut = status;
-        this.Client = client;
+        setClient(client);
+        setEmployye(employye);
+    }
+
+    public Employee getEmployye() {
+        return Employye;
+    }
+
+    public void setEmployye(Employee employye) {
+        Employye = employye;
     }
 
     public List<Operation> getOperation() {

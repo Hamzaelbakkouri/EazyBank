@@ -16,8 +16,8 @@ public class EmployeeService {
             EmployeeIMPL employedao = new EmployeeIMPL();
             Optional<Employee> employee = employedao.getOne(param);
             Employe = Optional.of(employee.get());
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
         }
         return Employe;
     }
@@ -28,8 +28,8 @@ public class EmployeeService {
             EmployeeIMPL employedao = new EmployeeIMPL();
             List<Optional<Employee>> employee = employedao.searchByAllAttributs(param);
             Employes = employee;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
         }
         return Employes;
     }
@@ -40,8 +40,8 @@ public class EmployeeService {
             EmployeeIMPL employedao = new EmployeeIMPL();
             List<Optional<Employee>> employee = employedao.getAll();
             Employe = employee;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
         }
         return Employe;
     }
@@ -52,8 +52,8 @@ public class EmployeeService {
             EmployeeIMPL employedao = new EmployeeIMPL();
             Employe = employedao.insert(employes);
             Employe = Optional.of(Employe.get());
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
         }
         return Employe;
     }
@@ -65,8 +65,8 @@ public class EmployeeService {
             EmployeeIMPL employedao = new EmployeeIMPL();
             Employe = employedao.update(employes);
             Employe = Optional.of(Employe.get());
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
         }
         return Employe;
     }
@@ -77,7 +77,7 @@ public class EmployeeService {
             EmployeeIMPL employedao = new EmployeeIMPL();
             Employe = employedao.delete(Rnum);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e + " :Not Found");
         }
         return Employe;
     }
