@@ -25,11 +25,11 @@ public interface SavingAccountDAO extends DAO<SavingAccount> {
     @Override
     Map<String, Optional<SavingAccount>> getAll() throws SQLException;
 
-    List<SavingAccount> showByCreationDate(LocalDate date) throws SQLException;
+    Map<String, Optional<SavingAccount>> showByCreationDate(LocalDate date) throws SQLException;
 
-    List<SavingAccount> showByStatus() throws SQLException;
+    Map<String, Optional<SavingAccount>> showByStatus(statut stats) throws SQLException;
 
     Boolean changeStatut(String accnum, statut stats) throws SQLException;
 
-    List<Optional<SavingAccount>> SearchByClient(String clintCode) throws SQLException;
+    Map<String, Optional<SavingAccount>> SearchByClient(String clintCode) throws SQLException;
 }

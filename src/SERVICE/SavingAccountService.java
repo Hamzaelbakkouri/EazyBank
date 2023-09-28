@@ -6,7 +6,10 @@ import DTO.CurrentAccount;
 import DTO.SavingAccount;
 import INTERFACES.CurrentAccountDAO;
 import INTERFACES.SavingAccountDAO;
+import INTERFACES.statut;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class SavingAccountService {
@@ -44,5 +47,27 @@ public class SavingAccountService {
             System.out.println(e + " :Not Found");
         }
         return savAccount;
+    }
+
+    public Map<String, Optional<SavingAccount>> getAllSavingAcc() {
+        Map<String, Optional<SavingAccount>> CurrentAccount = new HashMap<>();
+        try {
+            SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();
+            CurrentAccount = SavingAccountdao.getAll();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return CurrentAccount;
+    }
+
+    public Map<String, Optional<SavingAccount>> getByStatut(statut stats) {
+        Map<String, Optional<SavingAccount>> CurrentAccount = new HashMap<>();
+        try {
+            SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();
+            CurrentAccount = SavingAccountdao.showByStatus(stats);
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return CurrentAccount;
     }
 }

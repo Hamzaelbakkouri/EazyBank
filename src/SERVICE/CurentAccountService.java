@@ -56,11 +56,23 @@ public class CurentAccountService {
         }
         return CurrentAccount;
     }
+
     public Map<String, Optional<CurrentAccount>> getAllAcc() {
         Map<String, Optional<CurrentAccount>> CurrentAccount = new HashMap<>();
         try {
             CurrentAccountDAO CurrentAccoundao = new CurrentAccountIPLM();
             CurrentAccount = CurrentAccoundao.getAll();
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return CurrentAccount;
+    }
+
+    public Map<String, Optional<CurrentAccount>> getByStatut(statut stats) {
+        Map<String, Optional<CurrentAccount>> CurrentAccount = new HashMap<>();
+        try {
+            CurrentAccountDAO CurrentAccoundao = new CurrentAccountIPLM();
+            CurrentAccount = CurrentAccoundao.showByStatus(stats);
         } catch (Exception e) {
             System.out.println(e + " :Not Found");
         }

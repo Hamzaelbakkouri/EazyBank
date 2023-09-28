@@ -620,6 +620,7 @@ public class menu {
                 System.out.println("Balance : " + currentAccount.getBalance());
                 System.out.println("Statut : " + currentAccount.getStatut());
                 System.out.println("Creation Date : " + currentAccount.getCreationDate());
+                System.out.println("--------------------------------------------");
 
             } else {
                 System.out.println("Account Number: " + accountNumber);
@@ -629,28 +630,28 @@ public class menu {
     }
 
     public static void getAllSaving() {
-//        CurentAccountService currentAccAll = new CurentAccountService();
-//        Map<String, Optional<CurrentAccount>> currentAccounts = currentAccAll.getAllAcc();
-//
-//        for (Map.Entry<String, Optional<CurrentAccount>> entry : currentAccounts.entrySet()) {
-//            String accountNumber = entry.getKey();
-//            Optional<CurrentAccount> currentAccountOptional = entry.getValue();
-//
-//            if (currentAccountOptional.isPresent()) {
-//                CurrentAccount Savingaccount = currentAccountOptional.get();
-//                System.out.println("Account Number: " + accountNumber);
-//                System.out.println("Account Number : " + Savingaccount.getAccNum());
-//                System.out.println("Client Code : " + Savingaccount.getClient().getCode());
-//                System.out.println("Interest Rate : " + Savingaccount.getInterestRate());
-//                System.out.println("Balance : " + Savingaccount.getBalance());
-//                System.out.println("Statut : " + Savingaccount.getStatut());
-//                System.out.println("Creation Date : " + Savingaccount.getCreationDate());
-//
-//            } else {
-//                System.out.println("Account Number: " + accountNumber);
-//                System.out.println(" Current Accounts not found.");
-//            }
-//        }
+        SavingAccountService currentAccAll = new SavingAccountService();
+        Map<String, Optional<SavingAccount>> SavingAccountAccounts = currentAccAll.getAllSavingAcc();
+
+        for (Map.Entry<String, Optional<SavingAccount>> entry : SavingAccountAccounts.entrySet()) {
+            String accountNumber = entry.getKey();
+            Optional<SavingAccount> savingAccountOptional = entry.getValue();
+
+            if (savingAccountOptional.isPresent()) {
+                SavingAccount Savingaccount = savingAccountOptional.get();
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println("Client Code : " + Savingaccount.getClient().getCode());
+                System.out.println("Interest Rate : " + Savingaccount.getInterestRate());
+                System.out.println("Balance : " + Savingaccount.getBalance());
+                System.out.println("Statut : " + Savingaccount.getStatut());
+                System.out.println("Creation Date : " + Savingaccount.getCreationDate());
+                System.out.println("--------------------------------------------");
+
+            } else {
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println(" Current Accounts not found.");
+            }
+        }
     }
 
     public static void getAllAccountType() {
@@ -661,6 +662,93 @@ public class menu {
             getAllCurrent();
         } else if (choice == 2) {
             getAllSaving();
+        } else {
+            System.out.println("wrong choice !!");
+        }
+    }
+
+    public static void getByStatutCurrent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(" 1 :active account\n 2 :inactive account");
+        int choice = Integer.parseInt(scanner.nextLine());
+        statut stat;
+        if (choice == 1) {
+            stat = statut.active;
+        } else if (choice == 2) {
+            stat = statut.active;
+        } else {
+            System.out.println("Choice not Found");
+            return;
+        }
+        CurentAccountService currentAccAll = new CurentAccountService();
+        Map<String, Optional<CurrentAccount>> currentAccounts = currentAccAll.getByStatut(stat);
+
+        for (Map.Entry<String, Optional<CurrentAccount>> entry : currentAccounts.entrySet()) {
+            String accountNumber = entry.getKey();
+            Optional<CurrentAccount> currentAccountOptional = entry.getValue();
+
+            if (currentAccountOptional.isPresent()) {
+                CurrentAccount currentAccount = currentAccountOptional.get();
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println("Client Code : " + currentAccount.getClient().getCode());
+                System.out.println("max price : " + currentAccount.getMaxPrice());
+                System.out.println("Balance : " + currentAccount.getBalance());
+                System.out.println("Statut : " + currentAccount.getStatut());
+                System.out.println("Creation Date : " + currentAccount.getCreationDate());
+                System.out.println("--------------------------------------------");
+
+            } else {
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println(" Current Accounts not found.");
+            }
+        }
+    }
+
+    public static void getByStatutSaving() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(" 1 :active account\n 2 :inactive account");
+        int choice = Integer.parseInt(scanner.nextLine());
+        statut stat;
+        if (choice == 1) {
+            stat = statut.active;
+        } else if (choice == 2) {
+            stat = statut.active;
+        } else {
+            System.out.println("Choice not Found");
+            return;
+        }
+        SavingAccountService currentAccAll = new SavingAccountService();
+        Map<String, Optional<SavingAccount>> SavingAccountAccounts = currentAccAll.getByStatut(stat);
+
+        for (Map.Entry<String, Optional<SavingAccount>> entry : SavingAccountAccounts.entrySet()) {
+            String accountNumber = entry.getKey();
+            Optional<SavingAccount> savingAccountOptional = entry.getValue();
+
+            if (savingAccountOptional.isPresent()) {
+                SavingAccount Savingaccount = savingAccountOptional.get();
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println("Client Code : " + Savingaccount.getClient().getCode());
+                System.out.println("Interest Rate : " + Savingaccount.getInterestRate());
+                System.out.println("Balance : " + Savingaccount.getBalance());
+                System.out.println("Statut : " + Savingaccount.getStatut());
+                System.out.println("Creation Date : " + Savingaccount.getCreationDate());
+                System.out.println("--------------------------------------------");
+
+            } else {
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println(" Current Accounts not found.");
+            }
+        }
+    }
+
+    public static void getByStatutAccountType() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("1 : to get Current accounts \n2 : to get Saving accounts");
+        int choice = Integer.parseInt(scanner.nextLine());
+        if (choice == 1) {
+            getByStatutCurrent();
+        } else if (choice == 2) {
+            getByStatutSaving();
         } else {
             System.out.println("wrong choice !!");
         }

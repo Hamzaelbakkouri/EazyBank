@@ -24,13 +24,13 @@ public interface CurrentAccountDAO extends DAO<CurrentAccount> {
     @Override
     Map<String, Optional<CurrentAccount>> getAll() throws SQLException;
 
-    List<Optional<CurrentAccount>> showByCreationDate(LocalDate date) throws SQLException;
+    Map<String, Optional<CurrentAccount>> showByCreationDate(LocalDate date) throws SQLException;
 
-    List<Optional<CurrentAccount>> showByStatus(statut stats) throws SQLException;
+    Map<String, Optional<CurrentAccount>> showByStatus(statut stats) throws SQLException;
 
 
     Boolean changeStatut(String accnum, statut stats) throws SQLException;
 
-    List<Optional<CurrentAccount>> SearchByClient(String client) throws SQLException;
+    Map<String, Optional<CurrentAccount>> SearchByClient(String client) throws SQLException;
 
 }
