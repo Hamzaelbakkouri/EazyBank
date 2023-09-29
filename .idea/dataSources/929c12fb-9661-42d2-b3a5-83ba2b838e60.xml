@@ -3,9 +3,9 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>902</IntrospectionStateNumber>
+      <IntrospectionStateNumber>925</IntrospectionStateNumber>
       <ServerVersion>16.0</ServerVersion>
-      <StartupTime>1695850011</StartupTime>
+      <StartupTime>1695897089</StartupTime>
       <TimeZones>true ACDT
 true ACSST
 false ACST
@@ -802,54 +802,54 @@ false Zulu
 14697||10|C|G
 14697||-9223372036854775808|U|G
 14697||10|U|G</Grants>
-      <IntrospectionStateNumber>902</IntrospectionStateNumber>
+      <IntrospectionStateNumber>925</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
-    <role id="3" parent="1" name="pg_database_owner">
+    <role id="3" parent="1" name="pg_checkpoint">
+      <ObjectId>4544</ObjectId>
+    </role>
+    <role id="4" parent="1" name="pg_create_subscription">
+      <ObjectId>6304</ObjectId>
+    </role>
+    <role id="5" parent="1" name="pg_database_owner">
       <ObjectId>6171</ObjectId>
     </role>
-    <role id="4" parent="1" name="pg_read_all_data">
-      <ObjectId>6181</ObjectId>
+    <role id="6" parent="1" name="pg_execute_server_program">
+      <ObjectId>4571</ObjectId>
     </role>
-    <role id="5" parent="1" name="pg_write_all_data">
-      <ObjectId>6182</ObjectId>
-    </role>
-    <role id="6" parent="1" name="pg_monitor">
+    <role id="7" parent="1" name="pg_monitor">
       <ObjectId>3373</ObjectId>
       <RoleGrants>3374
 3375
 3377</RoleGrants>
     </role>
-    <role id="7" parent="1" name="pg_read_all_settings">
+    <role id="8" parent="1" name="pg_read_all_data">
+      <ObjectId>6181</ObjectId>
+    </role>
+    <role id="9" parent="1" name="pg_read_all_settings">
       <ObjectId>3374</ObjectId>
     </role>
-    <role id="8" parent="1" name="pg_read_all_stats">
+    <role id="10" parent="1" name="pg_read_all_stats">
       <ObjectId>3375</ObjectId>
     </role>
-    <role id="9" parent="1" name="pg_stat_scan_tables">
-      <ObjectId>3377</ObjectId>
-    </role>
-    <role id="10" parent="1" name="pg_read_server_files">
+    <role id="11" parent="1" name="pg_read_server_files">
       <ObjectId>4569</ObjectId>
     </role>
-    <role id="11" parent="1" name="pg_write_server_files">
-      <ObjectId>4570</ObjectId>
-    </role>
-    <role id="12" parent="1" name="pg_execute_server_program">
-      <ObjectId>4571</ObjectId>
-    </role>
-    <role id="13" parent="1" name="pg_signal_backend">
+    <role id="12" parent="1" name="pg_signal_backend">
       <ObjectId>4200</ObjectId>
     </role>
-    <role id="14" parent="1" name="pg_checkpoint">
-      <ObjectId>4544</ObjectId>
+    <role id="13" parent="1" name="pg_stat_scan_tables">
+      <ObjectId>3377</ObjectId>
     </role>
-    <role id="15" parent="1" name="pg_use_reserved_connections">
+    <role id="14" parent="1" name="pg_use_reserved_connections">
       <ObjectId>4550</ObjectId>
     </role>
-    <role id="16" parent="1" name="pg_create_subscription">
-      <ObjectId>6304</ObjectId>
+    <role id="15" parent="1" name="pg_write_all_data">
+      <ObjectId>6182</ObjectId>
+    </role>
+    <role id="16" parent="1" name="pg_write_server_files">
+      <ObjectId>4570</ObjectId>
     </role>
     <role id="17" parent="1" name="postgres">
       <BypassRls>1</BypassRls>
@@ -4235,9 +4235,9 @@ false Zulu
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>902</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2023-09-28.00:11:03.236</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-09-27.23:11:03</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>925</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2023-09-29.13:24:40.015</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-09-29.12:24:40</LocalIntrospectionTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
@@ -4271,7 +4271,7 @@ inactive</Labels>
     <sequence id="268" parent="264" name="person_id_seq">
       <DasType>integer|0s</DasType>
       <ObjectId>16612</ObjectId>
-      <SequenceIdentity>1(11)</SequenceIdentity>
+      <SequenceIdentity>1(12)</SequenceIdentity>
       <StartValue>1</StartValue>
       <StateNumber>818</StateNumber>
       <OwnerName>postgres</OwnerName>
@@ -4295,8 +4295,8 @@ inactive</Labels>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="272" parent="264" name="currentaccount">
-      <ObjectId>32783</ObjectId>
-      <StateNumber>894</StateNumber>
+      <ObjectId>32820</ObjectId>
+      <StateNumber>918</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -4325,8 +4325,8 @@ inactive</Labels>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="277" parent="264" name="savingaccount">
-      <ObjectId>32793</ObjectId>
-      <StateNumber>896</StateNumber>
+      <ObjectId>32830</ObjectId>
+      <StateNumber>920</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -4507,29 +4507,30 @@ inactive</Labels>
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>894</StateNumber>
+      <StateNumber>918</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="303" parent="272" name="maxprice">
       <DasType>double precision|0s</DasType>
       <Position>2</Position>
-      <StateNumber>894</StateNumber>
+      <StateNumber>918</StateNumber>
       <TypeId>701</TypeId>
     </column>
     <foreign-key id="304" parent="272" name="currentaccount_id_fkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>32788</ObjectId>
-      <StateNumber>894</StateNumber>
+      <ObjectId>32825</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>918</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>32768</RefTableId>
     </foreign-key>
     <index id="305" parent="272" name="currentaccount_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>32786</ObjectId>
+      <ObjectId>32823</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>894</StateNumber>
+      <StateNumber>918</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
@@ -4538,10 +4539,10 @@ inactive</Labels>
     </index>
     <key id="306" parent="272" name="currentaccount_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>32787</ObjectId>
+      <ObjectId>32824</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>894</StateNumber>
-      <UnderlyingIndexId>32786</UnderlyingIndexId>
+      <StateNumber>918</StateNumber>
+      <UnderlyingIndexId>32823</UnderlyingIndexId>
     </key>
     <column id="307" parent="273" name="id">
       <DasType>integer|0s</DasType>
@@ -4768,33 +4769,34 @@ inactive</Labels>
       <StateNumber>818</StateNumber>
       <UnderlyingIndexId>16617</UnderlyingIndexId>
     </key>
-    <column id="338" parent="277" name="interestrate">
-      <DasType>double precision|0s</DasType>
-      <Position>1</Position>
-      <StateNumber>896</StateNumber>
-      <TypeId>701</TypeId>
-    </column>
-    <column id="339" parent="277" name="id">
+    <column id="338" parent="277" name="id">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
-      <Position>2</Position>
-      <StateNumber>896</StateNumber>
+      <Position>1</Position>
+      <StateNumber>920</StateNumber>
       <TypeId>1043</TypeId>
+    </column>
+    <column id="339" parent="277" name="interestrate">
+      <DasType>double precision|0s</DasType>
+      <Position>2</Position>
+      <StateNumber>920</StateNumber>
+      <TypeId>701</TypeId>
     </column>
     <foreign-key id="340" parent="277" name="savingaccount_id_fkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>32798</ObjectId>
-      <StateNumber>896</StateNumber>
+      <ObjectId>32835</ObjectId>
+      <OnDelete>cascade</OnDelete>
+      <StateNumber>920</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>32768</RefTableId>
     </foreign-key>
     <index id="341" parent="277" name="savingaccount_pkey">
       <ColNames>id</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>32796</ObjectId>
+      <ObjectId>32833</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>896</StateNumber>
+      <StateNumber>920</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
       <CollationNames>default</CollationNames>
@@ -4803,10 +4805,10 @@ inactive</Labels>
     </index>
     <key id="342" parent="277" name="savingaccount_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>32797</ObjectId>
+      <ObjectId>32834</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>896</StateNumber>
-      <UnderlyingIndexId>32796</UnderlyingIndexId>
+      <StateNumber>920</StateNumber>
+      <UnderlyingIndexId>32833</UnderlyingIndexId>
     </key>
   </database-model>
 </dataSource>

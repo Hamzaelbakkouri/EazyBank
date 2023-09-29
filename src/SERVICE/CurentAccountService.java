@@ -79,11 +79,34 @@ public class CurentAccountService {
         }
         return CurrentAccount;
     }
+
     public Map<String, Optional<CurrentAccount>> getByCreationDate(LocalDate date) {
         Map<String, Optional<CurrentAccount>> CurrentAccount = new HashMap<>();
         try {
             CurrentAccountDAO CurrentAccoundao = new CurrentAccountIPLM();
             CurrentAccount = CurrentAccoundao.showByCreationDate(date);
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return CurrentAccount;
+    }
+
+    public Map<String, Optional<CurrentAccount>> SearchByClient(String client_code) {
+        Map<String, Optional<CurrentAccount>> CurrentAccount = new HashMap<>();
+        try {
+            CurrentAccountDAO CurrentAccoundao = new CurrentAccountIPLM();
+            CurrentAccount = CurrentAccoundao.SearchByClient(client_code);
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return CurrentAccount;
+    }
+
+    public Boolean delete(String accNum){
+        boolean CurrentAccount = false;
+        try {
+            CurrentAccountDAO CurrentAccoundao = new CurrentAccountIPLM();
+            CurrentAccount = CurrentAccoundao.delete(accNum);
         } catch (Exception e) {
             System.out.println(e + " :Not Found");
         }

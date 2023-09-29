@@ -24,6 +24,8 @@ public class Main {
         System.out.println("16 : ____________ get All accounts _________________  ");
         System.out.println("17 : ______________ get By Status __________________  ");
         System.out.println("18 : __________ get By Creation Date _______________  ");
+        System.out.println("19 : ______________ get By Client __________________  ");
+        System.out.println("20 : _____________ deleted Account _________________  ");
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
         switch (choice) {
@@ -165,6 +167,22 @@ public class Main {
                 }
             case "18":
                 menu.getByCreationDateAccountType();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "19":
+                menu.getByClientAccountType();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "20":
+                menu.DeleteAccountType();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
                     PricipalMenu();
