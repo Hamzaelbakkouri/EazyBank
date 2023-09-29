@@ -820,7 +820,119 @@ public class menu {
         } else if (choice == 2) {
             getByCreationDateSaving();
         } else {
-            System.out.println("wrong choice !!");
+            System.out.println("wrong choice!!");
+        }
+    }
+
+    public static void getByClientCurrent() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Client Code :");
+        String code = scanner.nextLine();
+        CurentAccountService currentAccAll = new CurentAccountService();
+        Map<String, Optional<CurrentAccount>> currentAccounts = currentAccAll.SearchByClient(code);
+
+        for (Map.Entry<String, Optional<CurrentAccount>> entry : currentAccounts.entrySet()) {
+            String accountNumber = entry.getKey();
+            Optional<CurrentAccount> currentAccountOptional = entry.getValue();
+
+            if (currentAccountOptional.isPresent()) {
+                CurrentAccount currentAccount = currentAccountOptional.get();
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println("Client Code : " + currentAccount.getClient().getCode());
+                System.out.println("max price : " + currentAccount.getMaxPrice());
+                System.out.println("Balance : " + currentAccount.getBalance());
+                System.out.println("Statut : " + currentAccount.getStatut());
+                System.out.println("Creation Date : " + currentAccount.getCreationDate());
+                System.out.println("--------------------------------------------");
+
+            } else {
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println(" Current Accounts not found.");
+            }
+        }
+    }
+
+    public static void getByClientSaving() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Client Code :");
+        String code = scanner.nextLine();
+        SavingAccountService currentAccAll = new SavingAccountService();
+        Map<String, Optional<SavingAccount>> SavingAccountAccounts = currentAccAll.SearchByClient(code);
+
+        for (Map.Entry<String, Optional<SavingAccount>> entry : SavingAccountAccounts.entrySet()) {
+            String accountNumber = entry.getKey();
+            Optional<SavingAccount> savingAccountOptional = entry.getValue();
+
+            if (savingAccountOptional.isPresent()) {
+                SavingAccount Savingaccount = savingAccountOptional.get();
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println("Client Code : " + Savingaccount.getClient().getCode());
+                System.out.println("Interest Rate : " + Savingaccount.getInterestRate());
+                System.out.println("Balance : " + Savingaccount.getBalance());
+                System.out.println("Statut : " + Savingaccount.getStatut());
+                System.out.println("Creation Date : " + Savingaccount.getCreationDate());
+                System.out.println("--------------------------------------------");
+
+            } else {
+                System.out.println("Account Number: " + accountNumber);
+                System.out.println(" Current Accounts not found.");
+            }
+        }
+    }
+
+    public static void getByClientAccountType() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("1 : to get Current accounts \n2 : to get Saving accounts");
+        int choice = Integer.parseInt(scanner.nextLine());
+        if (choice == 1) {
+            getByClientCurrent();
+        } else if (choice == 2) {
+            getByClientSaving();
+        } else {
+            System.out.println("wrong choice!!");
+        }
+    }
+
+    public static void deleteSavingAccount() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Account Number :");
+        String accnum = scanner.nextLine();
+
+        SavingAccountService currentAccAll = new SavingAccountService();
+        boolean isDelted = currentAccAll.deleteAcc(accnum);
+
+        if (isDelted) {
+            System.out.println("Account deleted successfully");
+        } else {
+            System.out.println("Something Went Wrong");
+        }
+    }
+
+    public static void deleteCurrentAccount() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Account Number :");
+        String accnum = scanner.nextLine();
+
+        CurentAccountService currentAccAll = new CurentAccountService();
+        boolean isDelted = currentAccAll.delete(accnum);
+
+        if (isDelted) {
+            System.out.println("Account deleted successfully");
+        } else {
+            System.out.println("Something Went Wrong");
+        }
+    }
+
+    public static void DeleteAccountType() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("1 : to delete Current account \n2 : to delete Saving account");
+        int choice = Integer.parseInt(scanner.nextLine());
+        if (choice == 1) {
+            deleteCurrentAccount();
+        } else if (choice == 2) {
+            deleteSavingAccount();
+        } else {
+            System.out.println("wrong choice!!");
         }
     }
 }

@@ -71,6 +71,7 @@ public class SavingAccountService {
         }
         return CurrentAccount;
     }
+
     public Map<String, Optional<SavingAccount>> getByCreationDate(LocalDate date) {
         Map<String, Optional<SavingAccount>> CurrentAccount = new HashMap<>();
         try {
@@ -81,4 +82,28 @@ public class SavingAccountService {
         }
         return CurrentAccount;
     }
+
+    public Map<String, Optional<SavingAccount>> SearchByClient(String client_code) {
+        Map<String, Optional<SavingAccount>> CurrentAccount = new HashMap<>();
+        try {
+            SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();
+            CurrentAccount = SavingAccountdao.SearchByClient(client_code);
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return CurrentAccount;
+    }
+
+    public Boolean deleteAcc(String AccNum) {
+        boolean CurrentAccount = false;
+        try {
+            SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();
+            CurrentAccount = SavingAccountdao.delete(AccNum);
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return CurrentAccount;
+    }
+
+
 }

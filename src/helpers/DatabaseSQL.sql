@@ -1,5 +1,5 @@
 create database EasyBank;
-drop table account;
+drop table SavingAccount;
 create table person (
                         id serial primary key ,
                         firstName varchar(50),
@@ -28,12 +28,12 @@ create table account (
                            status status
 );
 create table currentAccount (
-                                  id varchar(100) references account(accountNumber) primary key ,
+                                  id varchar(100) primary key references account(accountNumber) ON DELETE CASCADE ,
                                   maxPrice double precision
 );
 create table SavingAccount (
-                                 interestRate double precision,
-                                 id varchar(100) references account(accountNumber) primary key
+                                 id varchar(100) primary key references account(accountNumber) ON DELETE CASCADE,
+                                 interestRate double precision
 );
 create type "operationType" as enum ('payment','withdrawal');
 create table "operation" (
