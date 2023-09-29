@@ -20,6 +20,22 @@ public class Operation {
         this.type = Type;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     public int getOperationNumber() {
         return operationNumber;
     }

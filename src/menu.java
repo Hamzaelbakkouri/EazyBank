@@ -1,13 +1,8 @@
 import DAO.EmployeeIMPL;
-import DTO.Client;
-import DTO.CurrentAccount;
-import DTO.Employee;
-import DTO.SavingAccount;
+import DTO.*;
+import INTERFACES.operationType;
 import INTERFACES.statut;
-import SERVICE.ClientService;
-import SERVICE.CurentAccountService;
-import SERVICE.EmployeeService;
-import SERVICE.SavingAccountService;
+import SERVICE.*;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -412,10 +407,10 @@ public class menu {
 
     public static void searchForCurrentAccount() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Client code to search for an CurrentAccount");
-        String Client_code = scanner.nextLine();
+        System.out.println("Enter Account number to search for an CurrentAccount");
+        String accountNumber = scanner.nextLine();
         CurentAccountService CurentAccountservicee = new CurentAccountService();
-        Optional<CurrentAccount> CurentAccount = CurentAccountservicee.getOneCurrentAccount(Client_code);
+        Optional<CurrentAccount> CurentAccount = CurentAccountservicee.getOneCurrentAccount(accountNumber);
         if (CurentAccount.isPresent()) {
             CurrentAccount acc = CurentAccount.get();
 
@@ -443,10 +438,10 @@ public class menu {
 
     public static void searchForSavingAccount() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter Client Code to search for an Saving Account");
-        String accnum = scanner.nextLine();
+        System.out.println("Enter Account number to search for an Saving Account");
+        String accountNumber = scanner.nextLine();
         SavingAccountService SavingaccountService = new SavingAccountService();
-        Optional<SavingAccount> Savingaccount = SavingaccountService.getOneSavingAccount(accnum);
+        Optional<SavingAccount> Savingaccount = SavingaccountService.getOneSavingAccount(accountNumber);
         if (Savingaccount.isPresent()) {
             SavingAccount acc = Savingaccount.get();
 
@@ -933,6 +928,73 @@ public class menu {
             deleteSavingAccount();
         } else {
             System.out.println("wrong choice!!");
+        }
+    }
+
+//    OPERATION SIDE
+
+    public static void insertOperation() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Employee registration num To Create Operation :");
+        String employee = scanner.nextLine();
+        EmployeeService EmployeService = new EmployeeService();
+        Optional<Employee> getoneEmployee = EmployeService.getOneByRegistrationNum(employee);
+
+        System.out.println("Enter Account Type: \n 1: Current Account \n 2: Saving Account");
+        int type = Integer.parseInt(scanner.nextLine());
+        System.out.println("Enter Account Num To Create Operation :");
+        String accountNumber = scanner.nextLine();
+        Account acc = null;
+        if (type == 1) {
+            CurentAccountService CurentAccountservicee = new CurentAccountService();
+            Optional<CurrentAccount> Curentaccount = CurentAccountservicee.getOneCurrentAccount(accountNumber);
+            CurrentAccount account = Curentaccount.get();
+            acc = new Account(account.getAccNum(), account.getBalance(), account.getCreationDate(), account.getStatut(), account.getClient(), account.getEmployye());
+        } else if (type == 2) {
+            SavingAccountService SavingAccountservice = new SavingAccountService();
+            Optional<SavingAccount> Savingaccount = SavingAccountservice.getOneSavingAccount(accountNumber);
+            SavingAccount account = Savingaccount.get();
+            acc = new Account(account.getAccNum(), account.getBalance(), account.getCreationDate(), account.getStatut(), account.getClient(), account.getEmployye());
+        } else {
+            System.out.println("something went wrong");
+        }
+
+        if (acc != null) {
+            Account accountToput = acc;
+            LocalDate Date = LocalDate.now();
+            Employee employe = getoneEmployee.get();
+            System.out.println("Enter Price :");
+            double Price = Double.parseDouble(scanner.nextLine());
+            System.out.println("Operation Type \n 1: payment \n 2: withdrawal");
+            int choose = Integer.parseInt(scanner.nextLine());
+            operationType opType = null;
+            if (choose == 1) {
+                opType = operationType.payment;
+            } else if (choose == 2) {
+                opType = operationType.withdrawal;
+            } else {
+                System.out.println("choice not found ");
+            }
+
+            OperationService Operationservice = new OperationService();
+            Operation newOperation = new Operation(Date, opType, Price, employe, accountToput);
+            Optional<Operation> Data = Operationservice.insertOperation(newOperation);
+            if (Data.isPresent()) {
+                Operation OperationGet = Data.get();
+
+                System.out.println("\nThe New Operation :");
+                System.out.println("Account Number : " + OperationGet.getAccount().getAccNum());
+                System.out.println("Operation Number : " + OperationGet.getOperationNumber());
+                System.out.println("Price : " + OperationGet.getPrice());
+                System.out.println("Employee Number : " + OperationGet.getEmployee().getRegistrationNumber());
+                System.out.println("Date : " + OperationGet.getDate());
+                System.out.println("Operation Type : " + OperationGet.getType().toString());
+                System.out.println("---------------------------------------");
+            } else {
+                System.out.println("Operation not found");
+            }
+        } else {
+            System.out.println("Account not found");
         }
     }
 }

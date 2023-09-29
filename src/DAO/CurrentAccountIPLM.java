@@ -16,13 +16,13 @@ public class CurrentAccountIPLM implements CurrentAccountDAO {
     Connection connection = DB.getConnection();
 
     @Override
-    public Optional<CurrentAccount> getOne(String clientCode) throws SQLException {
+    public Optional<CurrentAccount> getOne(String accountNumber) throws SQLException {
         Optional<CurrentAccount> currentAccount = Optional.empty();
         statut statues;
-        String sql = "SELECT * FROM account AS a INNER JOIN currentAccount as ca ON ca.id = a.accountNumber INNER JOIN client as cl ON a.client_code = cl.code Inner Join person as p ON cl.id = p.id WHERE cl.code = ?  ";
+        String sql = "SELECT * FROM account AS a INNER JOIN currentAccount as ca ON ca.id = a.accountNumber INNER JOIN client as cl ON a.client_code = cl.code Inner Join person as p ON cl.id = p.id WHERE a.accountnumber = ?  ";
 
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, clientCode);
+        ps.setString(1, accountNumber);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             double balance = rs.getDouble("balance");
@@ -161,7 +161,6 @@ public class CurrentAccountIPLM implements CurrentAccountDAO {
         ps.close();
         return currentAccounts;
     }
-
 
     @Override
     public Map<String, Optional<CurrentAccount>> showByCreationDate(LocalDate date) throws SQLException {

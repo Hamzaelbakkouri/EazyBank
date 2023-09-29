@@ -5,7 +5,7 @@ public class Main {
     public static void PricipalMenu() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("************ WELCOME TO OUR EazyBank ******************** ");
+        System.out.println("************ WELCOME TO OUR EAZYBANK ******************** ");
         System.out.println("1 : ______________ Add Employee ____________________  ");
         System.out.println("2 : ____________ search one Employee _______________  ");
         System.out.println("3 : _____________ get all Employees ________________  ");
@@ -26,6 +26,7 @@ public class Main {
         System.out.println("18 : __________ get By Creation Date _______________  ");
         System.out.println("19 : ______________ get By Client __________________  ");
         System.out.println("20 : _____________ deleted Account _________________  ");
+        System.out.println("21 : ____________ insert Operation _________________  ");
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
         switch (choice) {
@@ -183,6 +184,14 @@ public class Main {
                 }
             case "20":
                 menu.DeleteAccountType();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "21":
+                menu.insertOperation();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
                     PricipalMenu();
