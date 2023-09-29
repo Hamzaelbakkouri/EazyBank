@@ -3,7 +3,7 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.49">
     <root id="1">
       <DateStyle>mdy</DateStyle>
-      <IntrospectionStateNumber>925</IntrospectionStateNumber>
+      <IntrospectionStateNumber>956</IntrospectionStateNumber>
       <ServerVersion>16.0</ServerVersion>
       <StartupTime>1695897089</StartupTime>
       <TimeZones>true ACDT
@@ -802,7 +802,7 @@ false Zulu
 14697||10|C|G
 14697||-9223372036854775808|U|G
 14697||10|U|G</Grants>
-      <IntrospectionStateNumber>925</IntrospectionStateNumber>
+      <IntrospectionStateNumber>956</IntrospectionStateNumber>
       <ObjectId>5</ObjectId>
       <OwnerName>postgres</OwnerName>
     </database>
@@ -4235,18 +4235,18 @@ false Zulu
     <schema id="264" parent="2" name="public">
       <Comment>standard public schema</Comment>
       <Current>1</Current>
-      <IntrospectionStateNumber>925</IntrospectionStateNumber>
-      <IntrospectionTimestamp>2023-09-29.13:24:40.015</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-09-29.12:24:40</LocalIntrospectionTimestamp>
+      <IntrospectionStateNumber>956</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2023-09-29.21:22:01.648</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-09-29.20:22:02</LocalIntrospectionTimestamp>
       <ObjectId>2200</ObjectId>
       <StateNumber>524</StateNumber>
       <OwnerName>pg_database_owner</OwnerName>
     </schema>
-    <object-type id="265" parent="264" name="operationType">
+    <object-type id="265" parent="264" name="operationtype">
       <Labels>payment
 withdrawal</Labels>
-      <ObjectId>16570</ObjectId>
-      <StateNumber>789</StateNumber>
+      <ObjectId>32841</ObjectId>
+      <StateNumber>951</StateNumber>
       <SubCategory>enum</SubCategory>
       <SubKind>enum</SubKind>
       <OwnerName>postgres</OwnerName>
@@ -4262,10 +4262,10 @@ inactive</Labels>
     </object-type>
     <sequence id="267" parent="264" name="operation_operationnumber_seq">
       <DasType>integer|0s</DasType>
-      <ObjectId>32803</ObjectId>
+      <ObjectId>32845</ObjectId>
       <SequenceIdentity>1(1)</SequenceIdentity>
       <StartValue>1</StartValue>
-      <StateNumber>898</StateNumber>
+      <StateNumber>955</StateNumber>
       <OwnerName>postgres</OwnerName>
     </sequence>
     <sequence id="268" parent="264" name="person_id_seq">
@@ -4313,8 +4313,8 @@ inactive</Labels>
       <OwnerName>postgres</OwnerName>
     </table>
     <table id="275" parent="264" name="operation">
-      <ObjectId>32804</ObjectId>
-      <StateNumber>898</StateNumber>
+      <ObjectId>32846</ObjectId>
+      <StateNumber>955</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
@@ -4654,71 +4654,71 @@ inactive</Labels>
       <DefaultExpression>nextval(&apos;operation_operationnumber_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>898</StateNumber>
-      <SequenceId>32803</SequenceId>
+      <StateNumber>955</StateNumber>
+      <SequenceId>32845</SequenceId>
       <TypeId>23</TypeId>
     </column>
     <column id="322" parent="275" name="date">
       <DasType>date|0s</DasType>
       <Position>2</Position>
-      <StateNumber>898</StateNumber>
+      <StateNumber>955</StateNumber>
       <TypeId>1082</TypeId>
     </column>
     <column id="323" parent="275" name="type">
-      <DasType>&quot;operationType&quot;|0s</DasType>
+      <DasType>operationtype|0s</DasType>
       <Position>3</Position>
-      <StateNumber>898</StateNumber>
-      <TypeId>16570</TypeId>
+      <StateNumber>955</StateNumber>
+      <TypeId>32841</TypeId>
     </column>
     <column id="324" parent="275" name="price">
       <DasType>double precision|0s</DasType>
       <Position>4</Position>
-      <StateNumber>898</StateNumber>
+      <StateNumber>955</StateNumber>
       <TypeId>701</TypeId>
     </column>
     <column id="325" parent="275" name="accountnumber">
       <DasType>varchar(100)|0s</DasType>
       <Position>5</Position>
-      <StateNumber>898</StateNumber>
+      <StateNumber>955</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="326" parent="275" name="registrationnumber">
       <DasType>varchar(100)|0s</DasType>
       <Position>6</Position>
-      <StateNumber>898</StateNumber>
+      <StateNumber>955</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <foreign-key id="327" parent="275" name="operation_accountnumber_fkey">
       <ColNames>accountnumber</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>32810</ObjectId>
-      <StateNumber>898</StateNumber>
+      <ObjectId>32852</ObjectId>
+      <StateNumber>955</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>32768</RefTableId>
     </foreign-key>
     <foreign-key id="328" parent="275" name="operation_registrationnumber_fkey">
       <ColNames>registrationnumber</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>32815</ObjectId>
-      <StateNumber>898</StateNumber>
+      <ObjectId>32857</ObjectId>
+      <StateNumber>955</StateNumber>
       <RefKeyColPositions>2</RefKeyColPositions>
       <RefTableId>16631</RefTableId>
     </foreign-key>
     <index id="329" parent="275" name="operation_pkey">
       <ColNames>operationnumber</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>32808</ObjectId>
+      <ObjectId>32850</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>898</StateNumber>
+      <StateNumber>955</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
     <key id="330" parent="275" name="operation_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>32809</ObjectId>
+      <ObjectId>32851</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>898</StateNumber>
-      <UnderlyingIndexId>32808</UnderlyingIndexId>
+      <StateNumber>955</StateNumber>
+      <UnderlyingIndexId>32850</UnderlyingIndexId>
     </key>
     <column id="331" parent="276" name="id">
       <DasType>integer|0s</DasType>

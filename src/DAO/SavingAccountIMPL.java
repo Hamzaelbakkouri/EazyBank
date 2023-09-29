@@ -17,13 +17,13 @@ public class SavingAccountIMPL implements SavingAccountDAO {
     Connection connection = DB.getConnection();
 
     @Override
-    public Optional<SavingAccount> getOne(String clientCode) throws SQLException {
+    public Optional<SavingAccount> getOne(String accountNumber) throws SQLException {
         Optional<SavingAccount> Savingaccount = Optional.empty();
         statut statues;
-        String sql = "SELECT * FROM account AS a INNER JOIN savingaccount as ca ON ca.id = a.accountNumber INNER JOIN client as cl ON a.client_code = cl.code Inner Join person as p ON cl.id = p.id WHERE cl.code like ?";
+        String sql = "SELECT * FROM account AS a INNER JOIN savingaccount as ca ON ca.id = a.accountNumber INNER JOIN client as cl ON a.client_code = cl.code Inner Join person as p ON cl.id = p.id WHERE a.accountNumber = ?";
 
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, "%" + clientCode + "%");
+        ps.setString(1, accountNumber);
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {
             double balance = rs.getDouble("balance");
