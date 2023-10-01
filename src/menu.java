@@ -997,4 +997,39 @@ public class menu {
             System.out.println("Account not found");
         }
     }
+
+    public static void deleteOperation() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter operation number :");
+        int operationNumber = Integer.parseInt(scanner.nextLine());
+        OperationService opService = new OperationService();
+        Boolean isDeleted = opService.deleteOperation(operationNumber);
+        if (isDeleted) {
+            System.out.println("Operation deleted successfully");
+        } else {
+            System.out.println("Operation deleted successfully");
+        }
+    }
+
+    public static void getOneOperation(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter operation number :");
+        int OperationNumber = Integer.parseInt(scanner.nextLine());
+        OperationService Operationservice = new OperationService();
+        Optional<Operation> Data = Operationservice.getOneOperation(OperationNumber);
+        if (Data.isPresent()) {
+            Operation OperationGet = Data.get();
+
+            System.out.println("\nThe Operation :");
+            System.out.println("Account Number : " + OperationGet.getAccount().getAccNum());
+            System.out.println("Operation Number : " + OperationGet.getOperationNumber());
+            System.out.println("Price : " + OperationGet.getPrice());
+            System.out.println("Employee Number : " + OperationGet.getEmployee().getRegistrationNumber());
+            System.out.println("Date : " + OperationGet.getDate());
+            System.out.println("Operation Type : " + OperationGet.getType().toString());
+            System.out.println("---------------------------------------");
+        } else {
+            System.out.println("Operation not found");
+        }
+    }
 }
