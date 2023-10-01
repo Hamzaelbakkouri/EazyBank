@@ -27,6 +27,8 @@ public class Main {
         System.out.println("19 : ______________ get By Client __________________  ");
         System.out.println("20 : _____________ deleted Account _________________  ");
         System.out.println("21 : ____________ insert Operation _________________  ");
+        System.out.println("22 : ____________ delete Operation _________________  ");
+        System.out.println("23 : ____ get One Operation By operation Number ____  ");
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
         switch (choice) {
@@ -192,6 +194,22 @@ public class Main {
                 }
             case "21":
                 menu.insertOperation();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "22":
+                menu.deleteOperation();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "23":
+                menu.getOneOperation();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
                     PricipalMenu();
