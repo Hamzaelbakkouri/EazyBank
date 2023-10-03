@@ -1,0 +1,44 @@
+package DAO;
+
+import DATABASE.DB;
+import DTO.Affectation;
+import INTERFACES.AffectationDAO;
+
+import java.sql.*;
+import java.sql.Date;
+import java.util.*;
+
+public class AffectationIMPL implements AffectationDAO {
+    Connection connection = DB.getConnection();
+
+    @Override
+    public Optional<Affectation> insert(Affectation affectation) throws SQLException {
+        PreparedStatement ps = connection.prepareStatement("INSERT INTO affectation (mission_code, startDate,endDate, emloye_registrationNumber) VALUES ( ? , ? , ? , ? )");
+        ps.setString(1, affectation.getMission());
+        ps.setDate(2, Date.valueOf(affectation.getStartDate()));
+        ps.setDate(3, Date.valueOf(affectation.getEndate()));
+        ps.setString(4, affectation.getEmployee().getRegistrationNumber());
+        if (ps.executeUpdate() > 0) {
+            return Optional.of(affectation);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public List<Map<String, String>> getEmployeeAffectations(String num) throws SQLException {
+        Map<String, String> affect = new HashMap<>();
+        List<Map<String, String>> affects = new ArrayList<>();
+        PreparedStatement ps = connection.prepareStatement("SELECT * FROM affectation WHERE emloye_registrationNumber = ?");
+        ps.setString(1, num);
+        ResultSet resultSet = ps.executeQuery();
+        while (resultSet.next()) {
+            affect.put("startDate", String.valueOf(resultSet.getDate("startDate").toLocalDate()));
+            affect.put("endDate", String.valueOf(resultSet.getDate("endDate").toLocalDate()));
+            affect.put("missionCode", resultSet.getString("mission_code"));
+            affect.put("employee", resultSet.getString("emloye_registrationNumber"));
+            affects.add(affect);
+        }
+        return affects;
+    }
+
+}
