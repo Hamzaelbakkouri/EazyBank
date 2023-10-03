@@ -33,6 +33,8 @@ public class Main {
         System.out.println("25 : _____________ get all missions ________________  ");
         System.out.println("26 : ______________ Insert mission _________________  ");
         System.out.println("27 : ______________ Delete Mission _________________  ");
+        System.out.println("28 : _____________ New Affectation _________________  ");
+        System.out.println("29 : ______ get Affectations With Employee _________  ");
 
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
@@ -247,6 +249,22 @@ public class Main {
                 }
             case "27":
                 menu.deleteMission();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "28":
+                menu.insertAffectation();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "29":
+                menu.getAffectationsWithEmployee();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
                     PricipalMenu();

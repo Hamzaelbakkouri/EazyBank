@@ -1127,7 +1127,6 @@ public class menu {
         List<Map<String, String>> missions = missionsevice.getAllMission();
 
         for (Map<String, String> mission : missions) {
-            System.out.println("Mission:");
             System.out.println("Code: " + mission.get("code"));
             System.out.println("Name: " + mission.get("name"));
             System.out.println("Description: " + mission.get("description"));
@@ -1169,6 +1168,53 @@ public class menu {
             System.out.println("mission deleted successfully");
         } else {
             System.out.println("something went wrong into deleting mission");
+        }
+    }
+
+//    Affectation side
+
+    public static void insertAffectation() {
+        Scanner scanner = new Scanner(System.in);
+
+        LocalDate startDate = LocalDate.now();
+        System.out.println("Enter Employee registration number :");
+        String Rnum = scanner.nextLine();
+        EmployeeService personService = new EmployeeService();
+        Optional<Employee> getOneEmploye = personService.getOneByRegistrationNum(Rnum);
+        Employee employee = getOneEmploye.get();
+
+        System.out.println("Enter end date for this affection :");
+        LocalDate endDate = LocalDate.parse(scanner.nextLine());
+        System.out.println("\nchoose a Mission :\n");
+        getAllMission();
+        System.out.println("\nEnter Mission code :");
+        String MissionCode = scanner.nextLine();
+
+        Affectation newAffectation = new Affectation(employee, MissionCode, endDate, startDate);
+        AffectationService IAffectation = new AffectationService();
+        Optional<Affectation> theNewAffect = IAffectation.insertAffectation(newAffectation);
+        if (theNewAffect.isPresent()) {
+            System.out.println("The New Affectation :");
+            System.out.println("Mission Code : " + theNewAffect.get().getMission());
+            System.out.println("End Date : " + theNewAffect.get().getEndate());
+            System.out.println("Start Date : " + theNewAffect.get().getStartDate());
+            System.out.println("Employee registration number : " + theNewAffect.get().getEmployee().getRegistrationNumber());
+        }
+    }
+
+    public static void getAffectationsWithEmployee(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter Employee registration number :");
+        String code = scanner.nextLine();
+        AffectationService missionsevice = new AffectationService();
+        List<Map<String, String>> missions = missionsevice.getEmployeeAffectations(code);
+
+        for (Map<String, String> mission : missions) {
+            System.out.println("start Date: " + mission.get("startDate"));
+            System.out.println("end date: " + mission.get("endDate"));
+            System.out.println("mission code: " + mission.get("mission_code"));
+            System.out.println("emloye Number: " + mission.get("emloye_registrationNumber"));
+            System.out.println("___________________________________________________");
         }
     }
 }

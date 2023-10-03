@@ -4,13 +4,31 @@ import java.time.LocalDate;
 
 public class Affectation {
     private Employee employee;
-    private Mission mission;
-    private LocalDate createDate;
+    private String mission;
+    private LocalDate Endate;
+    private LocalDate startDate;
 
-    public Affectation(Employee Employee, Mission Mission, LocalDate Createdate) {
-        this.createDate = Createdate;
+    public Affectation(Employee Employee, String Mission, LocalDate Enddate, LocalDate startdate) {
+        this.Endate = Enddate;
         this.mission = Mission;
         this.employee = Employee;
+        this.startDate = startdate;
+    }
+
+    public LocalDate getEndate() {
+        return Endate;
+    }
+
+    public void setEndate(LocalDate endate) {
+        Endate = endate;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
     public Employee getEmployee() {
@@ -21,19 +39,11 @@ public class Affectation {
         this.employee = employee;
     }
 
-    public Mission getMission() {
+    public String getMission() {
         return mission;
     }
 
-    public void setMission(Mission mission) {
+    public void setMission(String mission) {
         this.mission = mission;
-    }
-
-    public LocalDate getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
     }
 }
