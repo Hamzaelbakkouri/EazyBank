@@ -318,4 +318,19 @@ public class SavingAccountIMPL implements SavingAccountDAO {
         return currentAccounts;
     }
 
+    @Override
+    public String getOneAccountByOpNum(int operationNumber) throws SQLException {
+        String currentAccount = null;
+        String sql = "SELECT * FROM operation INNER JOIN account ON account.accountNumber = operation.accountNumber WHERE operation.operationNumber = ? ";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, operationNumber);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            currentAccount = rs.getString("accountNumber");
+        }
+        rs.close();
+        ps.close();
+        return currentAccount;
+    }
+
 }

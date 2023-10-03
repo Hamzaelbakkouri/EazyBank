@@ -5,7 +5,7 @@ public class Main {
     public static void PricipalMenu() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("************ WELCOME TO OUR EAZYBANK ******************** ");
+        System.out.println("  ********** WELCOME TO OUR EAZYBANK ***************  ");
         System.out.println("1 : ______________ Add Employee ____________________  ");
         System.out.println("2 : ____________ search one Employee _______________  ");
         System.out.println("3 : _____________ get all Employees ________________  ");
@@ -29,6 +29,11 @@ public class Main {
         System.out.println("21 : ____________ insert Operation _________________  ");
         System.out.println("22 : ____________ delete Operation _________________  ");
         System.out.println("23 : ____ get One Operation By operation Number ____  ");
+        System.out.println("24 : _______ get Account By operation Number _______  ");
+        System.out.println("25 : _____________ get all missions ________________  ");
+        System.out.println("26 : ______________ Insert mission _________________  ");
+        System.out.println("27 : ______________ Delete Mission _________________  ");
+
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
         switch (choice) {
@@ -210,6 +215,38 @@ public class Main {
                 }
             case "23":
                 menu.getOneOperation();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "24":
+                menu.SearchByOpNumType();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "25":
+                menu.getAllMission();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "26":
+                menu.insertMission();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "27":
+                menu.deleteMission();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
                     PricipalMenu();

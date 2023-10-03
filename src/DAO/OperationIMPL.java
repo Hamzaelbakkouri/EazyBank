@@ -116,4 +116,5 @@ public class OperationIMPL implements OperationDAO {
         int rowsDeleted = ps.executeUpdate();
         return rowsDeleted > 0;
     }
+
 }

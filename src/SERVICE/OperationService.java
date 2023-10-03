@@ -28,7 +28,6 @@ public class OperationService {
             Operationipml = Optional.of(Operationipml.get());
         } catch (Exception e) {
             System.out.println(e + " :Not Found");
-//            e.printStackTrace();
         }
         return Operationipml;
     }

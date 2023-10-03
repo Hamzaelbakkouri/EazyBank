@@ -12,6 +12,15 @@ public class Operation {
     private Employee employee;
     private Account account;
 
+    public Operation(int OperationNumber, LocalDate Date, operationType Type, double Price, Employee employe, Account account) {
+        this.account = account;
+        this.date = Date;
+        this.employee = employe;
+        this.price = Price;
+        this.type = Type;
+        this.operationNumber = OperationNumber;
+    }
+
     public Operation(LocalDate Date, operationType Type, double Price, Employee employe, Account account) {
         this.account = account;
         this.date = Date;
