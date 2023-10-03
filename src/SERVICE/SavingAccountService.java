@@ -1,13 +1,11 @@
 package SERVICE;
 
-import DAO.CurrentAccountIPLM;
 import DAO.SavingAccountIMPL;
-import DTO.CurrentAccount;
 import DTO.SavingAccount;
-import INTERFACES.CurrentAccountDAO;
 import INTERFACES.SavingAccountDAO;
 import INTERFACES.statut;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -105,5 +103,16 @@ public class SavingAccountService {
         return CurrentAccount;
     }
 
+    public String getOneAccountByOpNum(int opNum) {
+        String CurrentAccount = null;
+        try {
+            SavingAccountDAO CurrentAccoundao = new SavingAccountIMPL();
+            CurrentAccount = CurrentAccoundao.getOneAccountByOpNum(opNum);
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+//            e.printStackTrace();
+        }
+        return CurrentAccount;
+    }
 
 }

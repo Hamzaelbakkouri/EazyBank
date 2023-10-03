@@ -1011,7 +1011,7 @@ public class menu {
         }
     }
 
-    public static void getOneOperation(){
+    public static void getOneOperation() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter operation number :");
         int OperationNumber = Integer.parseInt(scanner.nextLine());
@@ -1030,6 +1030,145 @@ public class menu {
             System.out.println("---------------------------------------");
         } else {
             System.out.println("Operation not found");
+        }
+    }
+
+
+    public static void getOneSavingAccountByOpNum() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter operation number to search for an Saving Account");
+        int opNum = Integer.parseInt(scanner.nextLine());
+        SavingAccountService serviceSaving = new SavingAccountService();
+        String accountNum = serviceSaving.getOneAccountByOpNum(opNum);
+
+        SavingAccountService SavingaccountService = new SavingAccountService();
+        Optional<SavingAccount> Savingaccount = SavingaccountService.getOneSavingAccount(accountNum);
+
+        if (Savingaccount.isPresent()) {
+            SavingAccount acc = Savingaccount.get();
+
+            System.out.println("\nThe Account :");
+            System.out.println("Account Number : " + acc.getAccNum());
+            System.out.println("Client First name : " + acc.getClient().getFirstName());
+            System.out.println("Client Last name : " + acc.getClient().getLastName());
+            System.out.println("Balance : " + acc.getBalance() + " DH");
+            System.out.println("Interest Rate : " + acc.getInterestRate());
+            System.out.println("Statut : " + acc.getStatut());
+            System.out.println("Creation Date : " + acc.getCreationDate());
+
+            System.out.println("\u001b[32mClient :\u001b[0m");
+            System.out.println("Client Code : " + acc.getClient().getCode());
+            System.out.println("First name : " + acc.getClient().getFirstName());
+            System.out.println("Last name : " + acc.getClient().getLastName());
+
+            System.out.println("\u001b[32mEmployee :\u001b[0m");
+            System.out.println("registration number : " + acc.getEmployye().getRegistrationNumber());
+            System.out.println("First name : " + acc.getEmployye().getFirstName());
+            System.out.println("Last name : " + acc.getEmployye().getLastName());
+            System.out.println("Creation Date : " + acc.getCreationDate());
+            System.out.println("---------------------------------------");
+        }
+    }
+
+    public static void getOneCurrentAccountByOpNum() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter operation number to search for an Current Account");
+        int opNum = Integer.parseInt(scanner.nextLine());
+
+        CurentAccountService serviceSaving = new CurentAccountService();
+        String accountNum = serviceSaving.getOneAccountByOpNum(opNum);
+
+        CurentAccountService CurentAccountservicee = new CurentAccountService();
+        Optional<CurrentAccount> CurentAccount = CurentAccountservicee.getOneCurrentAccount(accountNum);
+        if (CurentAccount.isPresent()) {
+            CurrentAccount acc = CurentAccount.get();
+
+            System.out.println("\nThe Account :");
+            System.out.println("Account Number : " + acc.getAccNum());
+            System.out.println("Client First name : " + acc.getClient().getFirstName());
+            System.out.println("Client Last name : " + acc.getClient().getLastName());
+            System.out.println("max price : " + acc.getMaxPrice() + "DH");
+            System.out.println("Balance : " + acc.getBalance() + "DH");
+            System.out.println("Statut : " + acc.getStatut());
+            System.out.println("Creation Date : " + acc.getCreationDate());
+
+            System.out.println("\u001b[32mClient :\u001b[0m");
+            System.out.println("Client Code : " + acc.getClient().getCode());
+            System.out.println("First name : " + acc.getClient().getFirstName());
+            System.out.println("Last name : " + acc.getClient().getLastName());
+
+            System.out.println("\u001b[32mEmployee :\u001b[0m");
+            System.out.println("registration number : " + acc.getEmployye().getRegistrationNumber());
+            System.out.println("First name : " + acc.getEmployye().getFirstName());
+            System.out.println("Last name : " + acc.getEmployye().getLastName());
+            System.out.println("---------------------------------------");
+        }
+    }
+
+    public static void SearchByOpNumType() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("1 : to get Current account \n2 : to get Saving account");
+        int choice = Integer.parseInt(scanner.nextLine());
+        if (choice == 1) {
+            getOneCurrentAccountByOpNum();
+        } else if (choice == 2) {
+            getOneSavingAccountByOpNum();
+        } else {
+            System.out.println("wrong choice!!");
+        }
+    }
+
+//    Mission Dide
+
+    public static void getAllMission() {
+
+        MissionService missionsevice = new MissionService();
+        List<Map<String, String>> missions = missionsevice.getAllMission();
+
+        for (Map<String, String> mission : missions) {
+            System.out.println("Mission:");
+            System.out.println("Code: " + mission.get("code"));
+            System.out.println("Name: " + mission.get("name"));
+            System.out.println("Description: " + mission.get("description"));
+            System.out.println("___________________________________________________");
+            System.out.println();
+        }
+    }
+
+    public static void insertMission() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter mission code :");
+        String code = scanner.nextLine();
+        System.out.println("Enter mission Name :");
+        String Name = scanner.nextLine();
+        System.out.println("Enter mission description :");
+        String description = scanner.nextLine();
+
+        Mission newMission = new Mission(code, Name, description);
+        MissionService missionsevice = new MissionService();
+        Optional<Mission> missions = missionsevice.insertMission(newMission);
+
+        if (missions.isPresent()) {
+            System.out.println("Mission:");
+            System.out.println("Code: " + missions.get().getCode());
+            System.out.println("Name: " + missions.get().getCode());
+            System.out.println("Description: " + missions.get().getDescription());
+            System.out.println("___________________________________________________");
+        }
+    }
+
+    public static void deleteMission() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter mission code :");
+        String code = scanner.nextLine();
+
+        MissionService missionsevice = new MissionService();
+        boolean isDeleted = missionsevice.deleteMission(code);
+        if (isDeleted) {
+            System.out.println("mission deleted successfully");
+        } else {
+            System.out.println("something went wrong into deleting mission");
         }
     }
 }

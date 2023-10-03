@@ -18,4 +18,3 @@ public interface DAO<T> {
     Map<String, Optional<T>> getAll() throws SQLException;
 
 }
-

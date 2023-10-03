@@ -1,5 +1,6 @@
 package INTERFACES;
 
+import DTO.Account;
 import DTO.CurrentAccount;
 
 import java.sql.SQLException;
@@ -32,5 +33,6 @@ public interface CurrentAccountDAO extends DAO<CurrentAccount> {
     Boolean changeStatut(String accnum, statut stats) throws SQLException;
 
     Map<String, Optional<CurrentAccount>> SearchByClient(String client) throws SQLException;
+    String getOneAccountByOpNum(int operationNumber) throws SQLException;
 
 }

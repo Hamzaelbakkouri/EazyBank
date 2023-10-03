@@ -35,6 +35,17 @@ public class CurentAccountService {
         return CurrentAccount;
     }
 
+    public String getOneAccountByOpNum(int opNum) {
+        String CurrentAccount = null;
+        try {
+            CurrentAccountDAO CurrentAccoundao = new CurrentAccountIPLM();
+            CurrentAccount = CurrentAccoundao.getOneAccountByOpNum(opNum);
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return CurrentAccount;
+    }
+
     public Optional<CurrentAccount> updateCurrentAccount(CurrentAccount currentaccount) {
         Optional<CurrentAccount> CurrentAccount = Optional.empty();
         try {
@@ -102,7 +113,7 @@ public class CurentAccountService {
         return CurrentAccount;
     }
 
-    public Boolean delete(String accNum){
+    public Boolean delete(String accNum) {
         boolean CurrentAccount = false;
         try {
             CurrentAccountDAO CurrentAccoundao = new CurrentAccountIPLM();

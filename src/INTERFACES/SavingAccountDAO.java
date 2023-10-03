@@ -1,5 +1,6 @@
 package INTERFACES;
 
+import DTO.Account;
 import DTO.CurrentAccount;
 import DTO.SavingAccount;
 
@@ -32,4 +33,5 @@ public interface SavingAccountDAO extends DAO<SavingAccount> {
     Boolean changeStatut(String accnum, statut stats) throws SQLException;
 
     Map<String, Optional<SavingAccount>> SearchByClient(String clintCode) throws SQLException;
+    String getOneAccountByOpNum(int operationNumber) throws SQLException;
 }
