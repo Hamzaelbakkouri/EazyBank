@@ -44,8 +44,10 @@ public class ClientIMPL implements ClientDAO {
         try (
                 PreparedStatement ps = connection.prepareStatement(
                         "BEGIN;" +
-                                "INSERT INTO person (firstName, lastName, dateofbirth, phonenumber) VALUES (?, ?, ?, ?);" +
-                                "INSERT INTO client (id, code, adress) VALUES ((SELECT id FROM person WHERE firstName = ? AND lastName = ? AND dateofbirth = ?), ?, ? );" +
+                                "INSERT INTO person (firstName, lastName, dateofbirth, phonenumber) VALUES (?, ?, ?, ?);"
+                                +
+                                "INSERT INTO client (id, code, adress) VALUES ((SELECT id FROM person WHERE firstName = ? AND lastName = ? AND dateofbirth = ?), ?, ? );"
+                                +
                                 "COMMIT;")) {
 
             ps.setString(1, client.getFirstName());
@@ -69,7 +71,8 @@ public class ClientIMPL implements ClientDAO {
         try (
                 PreparedStatement ps = connection.prepareStatement(
                         "BEGIN;" +
-                                "UPDATE person SET firstName = ?, lastName = ?, dateofbirth = ?, phonenumber = ? WHERE id = (SELECT id FROM client WHERE code = ?);" +
+                                "UPDATE person SET firstName = ?, lastName = ?, dateofbirth = ?, phonenumber = ? WHERE id = (SELECT id FROM client WHERE code = ?);"
+                                +
                                 "UPDATE client SET adress = ? WHERE code = ?;" +
                                 "COMMIT;")) {
 
@@ -90,15 +93,7 @@ public class ClientIMPL implements ClientDAO {
     public boolean delete(String code) throws SQLException {
         PreparedStatement ps = null;
 
-        String sql = """
-                BEGIN;
-                DELETE FROM person
-                WHERE id = (SELECT id FROM client WHERE code = ?);
-                                
-                DELETE FROM client
-                WHERE code = ?;
-                COMMIT ;
-                """;
+        String sql = " BEGIN; DELETE FROM personWHERE id = (SELECT id FROM client WHERE code = ?); DELETE FROM clientWHERE code = ?; COMMIT ;";
 
         ps = connection.prepareStatement(sql);
         ps.setString(1, code);

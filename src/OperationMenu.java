@@ -1,57 +1,47 @@
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Main {
-    public static void PricipalMenu() throws SQLException {
+public class OperationMenu {
+    public OperationMenu() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(" *** WELCOME TO OUR EAZYBANK **** ");
-        System.out.println("1 : ____ Person _____________________  ");
-        System.out.println("2 : ____ Account ____________________  ");
-        System.out.println("3 : ____ Operation __________________  ");
-        System.out.println("4 : ____ Mission ____________________ ");
-        System.out.println("5 : ____ Affectation ________________  ");
+        System.out.println("1 : ____________ insert Operation ________________ ");
+        System.out.println("2 : ___________ delete Operation _________________ ");
+        System.out.println("3 : ___ get One Operation By operation Number ____ ");
+        System.out.println("4 : ______ get Account By operation Number _______ ");
 
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
         switch (choice) {
             case "1":
-                new PersonMenu();
+                menu.insertOperation();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
-                    PricipalMenu();
+                    Main.PricipalMenu();
                 } else {
                     break;
                 }
             case "2":
-                new AffectationMenu();
+                menu.deleteOperation();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
-                    PricipalMenu();
+                    Main.PricipalMenu();
                 } else {
                     break;
                 }
             case "3":
-                new OperationMenu();
+                menu.getOneOperation();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
-                    PricipalMenu();
+                    Main.PricipalMenu();
                 } else {
                     break;
                 }
             case "4":
-                new MissionMenu();
+                menu.SearchByOpNumType();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
-                    PricipalMenu();
-                } else {
-                    break;
-                }
-            case "5":
-                new AffectationMenu();
-                System.out.println("Back to menu click 1 , else to exit :");
-                if (Integer.parseInt(scanner.nextLine()) == 1) {
-                    PricipalMenu();
+                    Main.PricipalMenu();
                 } else {
                     break;
                 }
@@ -59,14 +49,10 @@ public class Main {
                 System.out.println("choice not found");
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
-                    PricipalMenu();
+                    Main.PricipalMenu();
                 } else {
                     break;
                 }
         }
-    }
-
-    public static void main(String[] args) throws SQLException {
-        PricipalMenu();
     }
 }

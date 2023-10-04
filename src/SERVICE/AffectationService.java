@@ -31,4 +31,18 @@ public class AffectationService {
         }
         return newaffectation;
     }
+
+    public Optional<Map<String, Integer>> AffectationStatistiques() {
+        Optional<Map<String, Integer>> newaffectation = null;
+        try {
+            AffectationDAO Affectationdao = new AffectationIMPL();
+            newaffectation = Affectationdao.Statistiques();
+            if (newaffectation.isPresent()) {
+                return newaffectation;
+            }
+        } catch (Exception e) {
+            System.out.println(e + " :Not Found");
+        }
+        return newaffectation;
+    }
 }
