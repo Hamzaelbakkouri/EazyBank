@@ -92,16 +92,7 @@ public class EmployeeIMPL implements EmployeeDAO {
     public boolean delete(String Rnum) throws SQLException {
         PreparedStatement ps = null;
 
-        String sql = """
-                BEGIN;
-                DELETE FROM person
-                WHERE id = (SELECT id FROM employe WHERE registrationNumber = ?);
-                                
-                DELETE FROM employe
-                WHERE registrationNumber = ?;
-                COMMIT ;
-
-                """;
+        String sql = " BEGIN; DELETE FROM person WHERE id = (SELECT id FROM employe WHERE registrationNumber = ?); DELETE FROM employe WHERE registrationNumber = ?; COMMIT  ";
 
         ps = connection.prepareStatement(sql);
         ps.setString(1, Rnum);

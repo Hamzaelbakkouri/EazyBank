@@ -1,7 +1,6 @@
 package INTERFACES;
 
 import DTO.Client;
-import DTO.Employee;
 
 import java.sql.SQLException;
 import java.util.List;
