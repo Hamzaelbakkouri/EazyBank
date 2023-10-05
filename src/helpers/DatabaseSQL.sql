@@ -18,7 +18,7 @@ create table "employe" (
                            recrutmentDate date,
                            email varchar(100)
 );
-create type "status" as enum ('active','inactive');
+-- create type "status" as enum ('active','inactive');
 create table account (
                            accountNumber varchar(100) primary key ,
                            balance double precision ,
@@ -35,7 +35,7 @@ create table SavingAccount (
                                  id varchar(100) primary key references account(accountNumber) ON DELETE CASCADE,
                                  interestRate double precision
 );
-create type operationType as enum ('payment','withdrawal');
+-- create type operationType as enum ('payment','withdrawal','transfer');
 create table "operation" (
                              operationNumber serial primary key ,
                              date date ,

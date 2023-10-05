@@ -1212,8 +1212,8 @@ public class menu {
         for (Map<String, String> mission : missions) {
             System.out.println("start Date: " + mission.get("startDate"));
             System.out.println("end date: " + mission.get("endDate"));
-            System.out.println("mission code: " + mission.get("mission_code"));
-            System.out.println("emloye Number: " + mission.get("emloye_registrationNumber"));
+            System.out.println("mission code: " + mission.get("missionCode"));
+            System.out.println("emloye Number: " + mission.get("employee"));
             System.out.println("___________________________________________________");
         }
     }
