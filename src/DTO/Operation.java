@@ -1,32 +1,25 @@
 package DTO;
 
-import INTERFACES.operationType;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 public class Operation {
-    private int operationNumber;
-    private LocalDate date;
-    private operationType type;
-    private double price;
+    protected int operationNumber;
+    protected LocalDate date;
+    protected double price;
     private Employee employee;
-    private Account account;
 
-    public Operation(int OperationNumber, LocalDate Date, operationType Type, double Price, Employee employe, Account account) {
-        this.account = account;
+    protected Operation(LocalDate Date, double Price, Employee employe) {
         this.date = Date;
-        this.employee = employe;
         this.price = Price;
-        this.type = Type;
-        this.operationNumber = OperationNumber;
+        setEmployee(employe);
     }
 
-    public Operation(LocalDate Date, operationType Type, double Price, Employee employe, Account account) {
-        this.account = account;
-        this.date = Date;
-        this.employee = employe;
-        this.price = Price;
-        this.type = Type;
+    protected Operation() {
+
     }
 
     public Employee getEmployee() {
@@ -35,14 +28,6 @@ public class Operation {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
-    }
-
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
     }
 
     public int getOperationNumber() {
@@ -59,14 +44,6 @@ public class Operation {
 
     public void setDate(LocalDate Date) {
         date = Date;
-    }
-
-    public operationType getType() {
-        return type;
-    }
-
-    public void setType(operationType Type) {
-        type = Type;
     }
 
     public double getPrice() {

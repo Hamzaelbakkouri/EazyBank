@@ -1,0 +1,122 @@
+Index: src/DTO/Employee.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package DTO;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.List;\r\n\r\npublic class Employee extends Person {\r\n\r\n    private int id;\r\n    private String registrationNumber;\r\n    private LocalDate recruitmentDate;\r\n    private String email;\r\n    private List<Operation> operation;\r\n\r\n\r\n    public Employee(String firstname, String lastname, LocalDate dateOfbirth, String phonenumber, String registrationnumber, LocalDate recruitmentdate, String Email) {\r\n        super(firstname, lastname, dateOfbirth, phonenumber);\r\n        this.email = Email;\r\n        this.recruitmentDate = recruitmentdate;\r\n        this.registrationNumber = registrationnumber;\r\n    }\r\n\r\n\r\n    public int getId() {\r\n        return id;\r\n    }\r\n\r\n    public void setId(int id) {\r\n        this.id = id;\r\n    }\r\n\r\n    public List<Operation> getOperation() {\r\n        return operation;\r\n    }\r\n\r\n    public void setOperation(List<Operation> operation) {\r\n        this.operation = operation;\r\n    }\r\n\r\n    public void setRecruitmentDate(LocalDate recruitmentDate) {\r\n        this.recruitmentDate = recruitmentDate;\r\n    }\r\n\r\n    public LocalDate getRecruitmentDate() {\r\n        return recruitmentDate;\r\n    }\r\n\r\n    public void setEmail(String email) {\r\n        this.email = email;\r\n    }\r\n\r\n    public String getEmail() {\r\n        return email;\r\n    }\r\n\r\n    public void setRegistrationNumber(String registrationNumber) {\r\n        this.registrationNumber = registrationNumber;\r\n    }\r\n\r\n    public String getRegistrationNumber() {\r\n        return registrationNumber;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/DTO/Employee.java b/src/DTO/Employee.java
+--- a/src/DTO/Employee.java	
++++ b/src/DTO/Employee.java	
+@@ -3,6 +3,7 @@
+ import java.time.LocalDate;
+ import java.util.List;
+ 
++
+ public class Employee extends Person {
+ 
+     private int id;
+@@ -11,7 +12,7 @@
+     private String email;
+     private List<Operation> operation;
+ 
+-
++    private List<Affectation> affectations;
+     public Employee(String firstname, String lastname, LocalDate dateOfbirth, String phonenumber, String registrationnumber, LocalDate recruitmentdate, String Email) {
+         super(firstname, lastname, dateOfbirth, phonenumber);
+         this.email = Email;
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import java.sql.SQLException;\r\nimport java.util.Scanner;\r\n\r\npublic class Main {\r\n    public static void PricipalMenu() throws SQLException {\r\n        Scanner scanner = new Scanner(System.in);\r\n\r\n        System.out.println(\" *** WELCOME TO OUR EAZYBANK **** \");\r\n        System.out.println(\"1 : ____ Person _____________________  \");\r\n        System.out.println(\"2 : ____ Account ____________________  \");\r\n        System.out.println(\"3 : ____ Operation __________________  \");\r\n        System.out.println(\"4 : ____ Mission ____________________ \");\r\n        System.out.println(\"5 : ____ Affectation ________________  \");\r\n\r\n        System.out.println(\"\\nEnter a number to implement the Method : \\n\");\r\n        String choice = scanner.nextLine();\r\n        switch (choice) {\r\n            case \"1\":\r\n                new PersonMenu();\r\n                System.out.println(\"Back to menu click 1 , else to exit :\");\r\n                if (Integer.parseInt(scanner.nextLine()) == 1) {\r\n                    PricipalMenu();\r\n                } else {\r\n                    break;\r\n                }\r\n            case \"2\":\r\n                new AffectationMenu();\r\n                System.out.println(\"Back to menu click 1 , else to exit :\");\r\n                if (Integer.parseInt(scanner.nextLine()) == 1) {\r\n                    PricipalMenu();\r\n                } else {\r\n                    break;\r\n                }\r\n            case \"3\":\r\n                new OperationMenu();\r\n                System.out.println(\"Back to menu click 1 , else to exit :\");\r\n                if (Integer.parseInt(scanner.nextLine()) == 1) {\r\n                    PricipalMenu();\r\n                } else {\r\n                    break;\r\n                }\r\n            case \"4\":\r\n                new MissionMenu();\r\n                System.out.println(\"Back to menu click 1 , else to exit :\");\r\n                if (Integer.parseInt(scanner.nextLine()) == 1) {\r\n                    PricipalMenu();\r\n                } else {\r\n                    break;\r\n                }\r\n            case \"5\":\r\n                new AffectationMenu();\r\n                System.out.println(\"Back to menu click 1 , else to exit :\");\r\n                if (Integer.parseInt(scanner.nextLine()) == 1) {\r\n                    PricipalMenu();\r\n                } else {\r\n                    break;\r\n                }\r\n            default:\r\n                System.out.println(\"choice not found\");\r\n                System.out.println(\"Back to menu click 1 , else to exit :\");\r\n                if (Integer.parseInt(scanner.nextLine()) == 1) {\r\n                    PricipalMenu();\r\n                } else {\r\n                    break;\r\n                }\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) throws SQLException {\r\n        PricipalMenu();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Main.java b/src/Main.java
+--- a/src/Main.java	
++++ b/src/Main.java	
+@@ -24,7 +24,7 @@
+                     break;
+                 }
+             case "2":
+-                new AffectationMenu();
++                new AccountMenu();
+                 System.out.println("Back to menu click 1 , else to exit :");
+                 if (Integer.parseInt(scanner.nextLine()) == 1) {
+                     PricipalMenu();
+Index: src/INTERFACES/ClientDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package INTERFACES;\r\n\r\nimport DTO.Client;\r\n\r\nimport java.sql.SQLException;\r\nimport java.util.List;\r\nimport java.util.Map;\r\nimport java.util.Optional;\r\n\r\npublic interface ClientDAO extends DAO<Client> {\r\n    @Override\r\n    Optional<Client> getOne(String num) throws SQLException;\r\n\r\n    @Override\r\n    Optional<Client> insert(Client employe) throws SQLException;\r\n\r\n    @Override\r\n    Optional<Client> update(Client employe) throws SQLException;\r\n\r\n    @Override\r\n    boolean delete(String t) throws SQLException;\r\n\r\n    @Override\r\n    Map<String, Optional<Client>> getAll() throws SQLException;\r\n\r\n    List<Optional<Client>> searchByAllAttributs(String attribut) throws SQLException;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/INTERFACES/ClientDAO.java b/src/INTERFACES/ClientDAO.java
+--- a/src/INTERFACES/ClientDAO.java	
++++ b/src/INTERFACES/ClientDAO.java	
+@@ -8,20 +8,5 @@
+ import java.util.Optional;
+ 
+ public interface ClientDAO extends DAO<Client> {
+-    @Override
+-    Optional<Client> getOne(String num) throws SQLException;
+-
+-    @Override
+-    Optional<Client> insert(Client employe) throws SQLException;
+-
+-    @Override
+-    Optional<Client> update(Client employe) throws SQLException;
+-
+-    @Override
+-    boolean delete(String t) throws SQLException;
+-
+-    @Override
+-    Map<String, Optional<Client>> getAll() throws SQLException;
+-
+     List<Optional<Client>> searchByAllAttributs(String attribut) throws SQLException;
+ }
+Index: src/SERVICE/SavingAccountService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package SERVICE;\r\n\r\nimport DAO.SavingAccountIMPL;\r\nimport DTO.SavingAccount;\r\nimport INTERFACES.SavingAccountDAO;\r\nimport INTERFACES.statut;\r\n\r\nimport java.sql.SQLException;\r\nimport java.time.LocalDate;\r\nimport java.util.HashMap;\r\nimport java.util.Map;\r\nimport java.util.Optional;\r\n\r\npublic class SavingAccountService {\r\n    public Optional<SavingAccount> insertSavingAcc(SavingAccount Saving) {\r\n        Optional<SavingAccount> SavingAccount = Optional.empty();\r\n        try {\r\n            SavingAccountDAO SavingAccoundao = new SavingAccountIMPL();\r\n            SavingAccount = SavingAccoundao.insert(Saving);\r\n            SavingAccount = Optional.of(SavingAccount.get());\r\n        } catch (Exception e) {\r\n            System.out.println(e + \" :Not Found\");\r\n        }\r\n        return SavingAccount;\r\n    }\r\n\r\n    public Optional<SavingAccount> getOneSavingAccount(String clientcode) {\r\n        Optional<SavingAccount> SavingAccount = Optional.empty();\r\n        try {\r\n            SavingAccountDAO SavingAccoundao = new SavingAccountIMPL();\r\n            SavingAccount = SavingAccoundao.getOne(clientcode);\r\n            SavingAccount = Optional.of(SavingAccount.get());\r\n        } catch (Exception e) {\r\n            System.out.println(e + \" :Not Found\");\r\n        }\r\n        return SavingAccount;\r\n    }\r\n\r\n    public Optional<SavingAccount> updateSavingAccount(SavingAccount savingaccount) {\r\n        Optional<SavingAccount> savAccount = Optional.empty();\r\n        try {\r\n            SavingAccountDAO Savingaccount = new SavingAccountIMPL();\r\n            savAccount = Savingaccount.update(savingaccount);\r\n            savAccount = Optional.of(savAccount.get());\r\n        } catch (Exception e) {\r\n            System.out.println(e + \" :Not Found\");\r\n        }\r\n        return savAccount;\r\n    }\r\n\r\n    public Map<String, Optional<SavingAccount>> getAllSavingAcc() {\r\n        Map<String, Optional<SavingAccount>> CurrentAccount = new HashMap<>();\r\n        try {\r\n            SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();\r\n            CurrentAccount = SavingAccountdao.getAll();\r\n        } catch (Exception e) {\r\n            System.out.println(e + \" :Not Found\");\r\n        }\r\n        return CurrentAccount;\r\n    }\r\n\r\n    public Map<String, Optional<SavingAccount>> getByStatut(statut stats) {\r\n        Map<String, Optional<SavingAccount>> CurrentAccount = new HashMap<>();\r\n        try {\r\n            SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();\r\n            CurrentAccount = SavingAccountdao.showByStatus(stats);\r\n        } catch (Exception e) {\r\n            System.out.println(e + \" :Not Found\");\r\n        }\r\n        return CurrentAccount;\r\n    }\r\n\r\n    public Map<String, Optional<SavingAccount>> getByCreationDate(LocalDate date) {\r\n        Map<String, Optional<SavingAccount>> CurrentAccount = new HashMap<>();\r\n        try {\r\n            SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();\r\n            CurrentAccount = SavingAccountdao.showByCreationDate(date);\r\n        } catch (Exception e) {\r\n            System.out.println(e + \" :Not Found\");\r\n        }\r\n        return CurrentAccount;\r\n    }\r\n\r\n    public Map<String, Optional<SavingAccount>> SearchByClient(String client_code) {\r\n        Map<String, Optional<SavingAccount>> CurrentAccount = new HashMap<>();\r\n        try {\r\n            SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();\r\n            CurrentAccount = SavingAccountdao.SearchByClient(client_code);\r\n        } catch (Exception e) {\r\n            System.out.println(e + \" :Not Found\");\r\n        }\r\n        return CurrentAccount;\r\n    }\r\n\r\n    public Boolean deleteAcc(String AccNum) {\r\n        boolean CurrentAccount = false;\r\n        try {\r\n            SavingAccountDAO SavingAccountdao = new SavingAccountIMPL();\r\n            CurrentAccount = SavingAccountdao.delete(AccNum);\r\n        } catch (Exception e) {\r\n            System.out.println(e + \" :Not Found\");\r\n        }\r\n        return CurrentAccount;\r\n    }\r\n\r\n    public String getOneAccountByOpNum(int opNum) {\r\n        String CurrentAccount = null;\r\n        try {\r\n            SavingAccountDAO CurrentAccoundao = new SavingAccountIMPL();\r\n            CurrentAccount = CurrentAccoundao.getOneAccountByOpNum(opNum);\r\n        } catch (Exception e) {\r\n            System.out.println(e + \" :Not Found\");\r\n//            e.printStackTrace();\r\n        }\r\n        return CurrentAccount;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/SERVICE/SavingAccountService.java b/src/SERVICE/SavingAccountService.java
+--- a/src/SERVICE/SavingAccountService.java	
++++ b/src/SERVICE/SavingAccountService.java	
+@@ -5,7 +5,6 @@
+ import INTERFACES.SavingAccountDAO;
+ import INTERFACES.statut;
+ 
+-import java.sql.SQLException;
+ import java.time.LocalDate;
+ import java.util.HashMap;
+ import java.util.Map;
+@@ -19,7 +18,7 @@
+             SavingAccount = SavingAccoundao.insert(Saving);
+             SavingAccount = Optional.of(SavingAccount.get());
+         } catch (Exception e) {
+-            System.out.println(e + " :Not Found");
++
+         }
+         return SavingAccount;
+     }
+Index: src/DTO/Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package DTO;\r\n\r\nimport java.time.LocalDate;\r\n\r\npublic class Person {\r\n    protected String firstName;\r\n    protected String lastName;\r\n    protected LocalDate dateOfBirth;\r\n    protected String phoneNumber;\r\n\r\n    public Person(){\r\n\r\n    }\r\n\r\n    public Person(String firstname, String lastname, LocalDate dateOfbirth, String phonenumber) {\r\n        this.firstName = firstname;\r\n        this.lastName = lastname;\r\n        this.dateOfBirth = dateOfbirth;\r\n        this.phoneNumber = phonenumber;\r\n    }\r\n\r\n    public void setFirstName(String firstName) {\r\n        this.firstName = firstName;\r\n    }\r\n\r\n    public String getFirstName() {\r\n        return firstName;\r\n    }\r\n\r\n    public void setLastName(String lastName) {\r\n        this.lastName = lastName;\r\n    }\r\n\r\n    public String getLastName() {\r\n        return lastName;\r\n    }\r\n\r\n    public void setDateOfBirth(LocalDate dateOfBirth) {\r\n        this.dateOfBirth = dateOfBirth;\r\n    }\r\n\r\n    public LocalDate getDateOfBirth() {\r\n        return dateOfBirth;\r\n    }\r\n\r\n    public void setPhoneNumber(String phoneNumber) {\r\n        this.phoneNumber = phoneNumber;\r\n    }\r\n\r\n    public String getPhoneNumber() {\r\n        return phoneNumber;\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/DTO/Person.java b/src/DTO/Person.java
+--- a/src/DTO/Person.java	
++++ b/src/DTO/Person.java	
+@@ -9,7 +9,6 @@
+     protected String phoneNumber;
+ 
+     public Person(){
+-
+     }
+ 
+     public Person(String firstname, String lastname, LocalDate dateOfbirth, String phonenumber) {

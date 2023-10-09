@@ -3,14 +3,15 @@ package SERVICE;
 import DAO.OperationIMPL;
 import DTO.CurrentAccount;
 import DTO.Operation;
+import DTO.SimpleOperation;
 import INTERFACES.OperationDAO;
 
 import java.sql.SQLException;
 import java.util.Optional;
 
 public class OperationService {
-    public Optional<Operation> insertOperation(Operation operation) {
-        Optional<Operation> Operationipml = Optional.empty();
+    public Optional<SimpleOperation> insertOperation(SimpleOperation operation) {
+        Optional<SimpleOperation> Operationipml = Optional.empty();
         try {
             OperationDAO Operationdao = new OperationIMPL();
             Operationipml = Operationdao.insert(operation);
@@ -20,8 +21,8 @@ public class OperationService {
         }
         return Operationipml;
     }
-    public Optional<Operation> getOneOperation(int operationNum) {
-        Optional<Operation> Operationipml = Optional.empty();
+    public Optional<SimpleOperation> getOneOperation(int operationNum) {
+        Optional<SimpleOperation> Operationipml = Optional.empty();
         try {
             OperationDAO Operationdao = new OperationIMPL();
             Operationipml = Operationdao.getOne(operationNum);

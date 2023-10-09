@@ -5,16 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6024ab7b-e587-45ac-8b32-54ebfc235c74" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/AccountMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/AffectationMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MissionMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/OperationMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PersonMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/AgenceMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DAO/AgenceIMPL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DAO/EmployeeAffectationIMPL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DTO/Agence.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DTO/Credit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DTO/EmployeeAffectation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DTO/SimpleOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DTO/TransferOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/INTERFACES/CreditStatut.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/INTERFACES2/AgenceDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/INTERFACES2/TypeDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SERVICE/AgenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/929c12fb-9661-42d2-b3a5-83ba2b838e60/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EazyBank.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EazyBank.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DAO/ClientIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/ClientIMPL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DAO/EmployeeIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/EmployeeIMPL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/INTERFACES/ClientDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/INTERFACES/ClientDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DAO/OperationIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DAO/OperationIMPL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTO/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTO/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTO/CurrentAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/CurrentAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTO/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTO/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTO/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DTO/SavingAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DTO/SavingAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/INTERFACES/OperationDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/INTERFACES/OperationDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SERVICE/OperationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SERVICE/OperationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/DatabaseSQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/DatabaseSQL.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,31 +80,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;EAZ-30-administrer-les-mission&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/projects/EazyBank&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/ACER/Downloads/jackson-databind-2.12.5.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ],
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "PLAIN_TEXT"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\projects\EazyBank\src\helpers" />
@@ -117,6 +146,11 @@
       <workItem from="1696165177469" duration="15743000" />
       <workItem from="1696320183073" duration="24638000" />
       <workItem from="1696409646670" duration="248000" />
+      <workItem from="1696680152265" duration="4574000" />
+      <workItem from="1696685548686" duration="8611000" />
+      <workItem from="1696710105394" duration="10596000" />
+      <workItem from="1696768234727" duration="12891000" />
+      <workItem from="1696841462285" duration="7135000" />
     </task>
     <servers />
   </component>

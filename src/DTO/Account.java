@@ -1,6 +1,8 @@
 package DTO;
 
 import INTERFACES.statut;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,8 +15,19 @@ public class Account {
     protected List<Operation> operation;
     protected Client Client;
     protected Employee Employye;
+    @Setter
+    @Getter
+    protected Agence agence;
 
-
+    public Account(String accnum, double balance, LocalDate creationdate, statut status, Client client, Employee employye, Agence agence) {
+        this.AccNum = accnum;
+        this.Balance = balance;
+        this.creationDate = creationdate;
+        this.Statut = status;
+        setClient(client);
+        setEmployye(employye);
+        setAgence(agence);
+    }
     public Account(String accnum, double balance, LocalDate creationdate, statut status, Client client, Employee employye) {
         this.AccNum = accnum;
         this.Balance = balance;

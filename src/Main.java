@@ -5,12 +5,13 @@ public class Main {
     public static void PricipalMenu() throws SQLException {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(" *** WELCOME TO OUR EAZYBANK **** ");
+        System.out.println("  ***** WELCOME TO OUR EAZYBANK ***** ");
         System.out.println("1 : ____ Person _____________________  ");
         System.out.println("2 : ____ Account ____________________  ");
         System.out.println("3 : ____ Operation __________________  ");
         System.out.println("4 : ____ Mission ____________________ ");
         System.out.println("5 : ____ Affectation ________________  ");
+        System.out.println("6 : ____ Agence _____________________  ");
 
         System.out.println("\nEnter a number to implement the Method : \n");
         String choice = scanner.nextLine();
@@ -49,6 +50,14 @@ public class Main {
                 }
             case "5":
                 new AffectationMenu();
+                System.out.println("Back to menu click 1 , else to exit :");
+                if (Integer.parseInt(scanner.nextLine()) == 1) {
+                    PricipalMenu();
+                } else {
+                    break;
+                }
+            case "6":
+                new AgenceMenu();
                 System.out.println("Back to menu click 1 , else to exit :");
                 if (Integer.parseInt(scanner.nextLine()) == 1) {
                     PricipalMenu();

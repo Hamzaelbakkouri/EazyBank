@@ -14,8 +14,8 @@ public class OperationIMPL implements OperationDAO {
     Connection connection = DB.getConnection();
 
     @Override
-    public Optional<Operation> insert(Operation operation) throws SQLException {
-        Optional<Operation> returnInsert = Optional.ofNullable(operation);
+    public Optional<SimpleOperation> insert(SimpleOperation operation) throws SQLException {
+        Optional<SimpleOperation> returnInsert = Optional.ofNullable(operation);
         PreparedStatement ps = connection.prepareStatement("INSERT INTO operation (date, type, price,accountNumber,registrationNumber) VALUES (?, ?::operationType, ?, ?, ?)");
 
         ps.setDate(1, Date.valueOf((LocalDate) operation.getDate()));
@@ -25,12 +25,12 @@ public class OperationIMPL implements OperationDAO {
         ps.setString(5, operation.getEmployee().getRegistrationNumber());
 
         int rs = ps.executeUpdate();
-        return returnInsert;
+        return Optional.of(operation);
     }
 
     @Override
-    public Optional<Operation> getOne(int operationNumber) throws SQLException {
-        Optional<Operation> operation = Optional.empty();
+    public Optional<SimpleOperation> getOne(int operationNumber) throws SQLException {
+        Optional<SimpleOperation> operation = Optional.empty();
         operationType types;
         String sql = "SELECT * FROM operation AS op INNER JOIN employe as em ON em.registrationNumber = op.registrationNumber Inner Join person as p ON em.id = p.id INNER JOIN account as a ON a.accountNumber = op.accountNumber  WHERE op.operationNumber = ?  ";
 
@@ -100,7 +100,7 @@ public class OperationIMPL implements OperationDAO {
                     Clients,
                     employees
             );
-            operation = Optional.of(new Operation(Date, types, price, employye, account));
+            operation = Optional.of(new SimpleOperation(Date, price, employye, types, account));
         }
         rs.close();
         ps.close();

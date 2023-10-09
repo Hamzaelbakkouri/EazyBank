@@ -2,7 +2,7 @@ package DTO;
 
 import java.time.LocalDate;
 
-public class Client extends Person {
+public final class Client extends Person {
     private String code;
     private String adress;
 

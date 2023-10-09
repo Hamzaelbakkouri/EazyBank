@@ -4,8 +4,13 @@ import INTERFACES.statut;
 
 import java.time.LocalDate;
 
-public class SavingAccount extends Account {
+public final class SavingAccount extends Account {
     private double InterestRate;
+
+    public SavingAccount(String accnum, double balance, LocalDate creationdate, statut status, double interestrate, Client client, Employee employye, Agence agence) {
+        super(accnum, balance, creationdate, status, client, employye, agence);
+        this.InterestRate = interestrate;
+    }
 
     public SavingAccount(String accnum, double balance, LocalDate creationdate, statut status, double interestrate, Client client, Employee employye) {
         super(accnum, balance, creationdate, status, client, employye);

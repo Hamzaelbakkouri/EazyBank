@@ -1,15 +1,24 @@
 package DTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
-public class Employee extends Person {
+public final class Employee extends Person {
 
     private int id;
     private String registrationNumber;
     private LocalDate recruitmentDate;
     private String email;
     private List<Operation> operation;
+    @Setter
+    @Getter
+    private List<Affectation> affectations;
+    @Setter
+    @Getter
+    private List<EmployeeAffectation> employeeAffectations;
 
 
     public Employee(String firstname, String lastname, LocalDate dateOfbirth, String phonenumber, String registrationnumber, LocalDate recruitmentdate, String Email) {
@@ -17,6 +26,9 @@ public class Employee extends Person {
         this.email = Email;
         this.recruitmentDate = recruitmentdate;
         this.registrationNumber = registrationnumber;
+    }
+    public Employee(){
+
     }
 
 
@@ -58,5 +70,15 @@ public class Employee extends Person {
 
     public String getRegistrationNumber() {
         return registrationNumber;
+    }
+
+    public String toJSON() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(this);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

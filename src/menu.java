@@ -939,7 +939,6 @@ public class menu {
         String employee = scanner.nextLine();
         EmployeeService EmployeService = new EmployeeService();
         Optional<Employee> getoneEmployee = EmployeService.getOneByRegistrationNum(employee);
-
         System.out.println("Enter Account Type: \n 1: Current Account \n 2: Saving Account");
         int type = Integer.parseInt(scanner.nextLine());
         System.out.println("Enter Account Num To Create Operation :");
@@ -949,12 +948,12 @@ public class menu {
             CurentAccountService CurentAccountservicee = new CurentAccountService();
             Optional<CurrentAccount> Curentaccount = CurentAccountservicee.getOneCurrentAccount(accountNumber);
             CurrentAccount account = Curentaccount.get();
-            acc = new Account(account.getAccNum(), account.getBalance(), account.getCreationDate(), account.getStatut(), account.getClient(), account.getEmployye());
+            acc = new Account(account.getAccNum(), account.getBalance(), account.getCreationDate(), account.getStatut(), account.getClient(), account.getEmployye(), account.getAgence());
         } else if (type == 2) {
             SavingAccountService SavingAccountservice = new SavingAccountService();
             Optional<SavingAccount> Savingaccount = SavingAccountservice.getOneSavingAccount(accountNumber);
             SavingAccount account = Savingaccount.get();
-            acc = new Account(account.getAccNum(), account.getBalance(), account.getCreationDate(), account.getStatut(), account.getClient(), account.getEmployye());
+            acc = new Account(account.getAccNum(), account.getBalance(), account.getCreationDate(), account.getStatut(), account.getClient(), account.getEmployye(), account.getAgence());
         } else {
             System.out.println("something went wrong");
         }
@@ -977,10 +976,16 @@ public class menu {
             }
 
             OperationService Operationservice = new OperationService();
-            Operation newOperation = new Operation(Date, opType, Price, employe, accountToput);
-            Optional<Operation> Data = Operationservice.insertOperation(newOperation);
+            SimpleOperation newOperation = new SimpleOperation();
+            newOperation.setEmployee(employe);
+            newOperation.setPrice(Price);
+            newOperation.setDate(Date);
+            newOperation.setType(opType);
+            newOperation.setAccount(accountToput);
+
+            Optional<SimpleOperation> Data = Operationservice.insertOperation(newOperation);
             if (Data.isPresent()) {
-                Operation OperationGet = Data.get();
+                SimpleOperation OperationGet = (SimpleOperation) Data.get();
 
                 System.out.println("\nThe New Operation :");
                 System.out.println("Account Number : " + OperationGet.getAccount().getAccNum());
@@ -1016,9 +1021,9 @@ public class menu {
         System.out.println("Enter operation number :");
         int OperationNumber = Integer.parseInt(scanner.nextLine());
         OperationService Operationservice = new OperationService();
-        Optional<Operation> Data = Operationservice.getOneOperation(OperationNumber);
+        Optional<SimpleOperation> Data = Operationservice.getOneOperation(OperationNumber);
         if (Data.isPresent()) {
-            Operation OperationGet = Data.get();
+            SimpleOperation OperationGet = Data.get();
 
             System.out.println("\nThe Operation :");
             System.out.println("Account Number : " + OperationGet.getAccount().getAccNum());
@@ -1202,7 +1207,7 @@ public class menu {
         }
     }
 
-    public static void getAffectationsWithEmployee(){
+    public static void getAffectationsWithEmployee() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Employee registration number :");
         String code = scanner.nextLine();

@@ -1,10 +1,8 @@
 package DAO;
 
 import DATABASE.DB;
-import DTO.Client;
-import DTO.Employee;
+import DTO.*;
 import INTERFACES.ClientDAO;
-import INTERFACES.EmployeeDAO;
 
 import java.sql.*;
 import java.sql.Date;
@@ -41,14 +39,7 @@ public class ClientIMPL implements ClientDAO {
     @Override
     public Optional<Client> insert(Client client) throws SQLException {
         Optional<Client> returnInsert = Optional.ofNullable(client);
-        try (
-                PreparedStatement ps = connection.prepareStatement(
-                        "BEGIN;" +
-                                "INSERT INTO person (firstName, lastName, dateofbirth, phonenumber) VALUES (?, ?, ?, ?);"
-                                +
-                                "INSERT INTO client (id, code, adress) VALUES ((SELECT id FROM person WHERE firstName = ? AND lastName = ? AND dateofbirth = ?), ?, ? );"
-                                +
-                                "COMMIT;")) {
+        try (PreparedStatement ps = connection.prepareStatement("BEGIN;" + "INSERT INTO person (firstName, lastName, dateofbirth, phonenumber) VALUES (?, ?, ?, ?);" + "INSERT INTO client (id, code, adress) VALUES ((SELECT id FROM person WHERE firstName = ? AND lastName = ? AND dateofbirth = ?), ?, ? );" + "COMMIT;")) {
 
             ps.setString(1, client.getFirstName());
             ps.setString(2, client.getLastName());
@@ -68,13 +59,7 @@ public class ClientIMPL implements ClientDAO {
     @Override
     public Optional<Client> update(Client person) throws SQLException {
         Optional<Client> returnInsert = Optional.ofNullable(person);
-        try (
-                PreparedStatement ps = connection.prepareStatement(
-                        "BEGIN;" +
-                                "UPDATE person SET firstName = ?, lastName = ?, dateofbirth = ?, phonenumber = ? WHERE id = (SELECT id FROM client WHERE code = ?);"
-                                +
-                                "UPDATE client SET adress = ? WHERE code = ?;" +
-                                "COMMIT;")) {
+        try (PreparedStatement ps = connection.prepareStatement("BEGIN;" + "UPDATE person SET firstName = ?, lastName = ?, dateofbirth = ?, phonenumber = ? WHERE id = (SELECT id FROM client WHERE code = ?);" + "UPDATE client SET adress = ? WHERE code = ?;" + "COMMIT;")) {
 
             ps.setString(1, person.getFirstName());
             ps.setString(2, person.getLastName());
